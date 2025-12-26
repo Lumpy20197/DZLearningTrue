@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DZLearning - Group Tutoring by Top Students</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
     <style>
         * {
             margin: 0;
@@ -21,6 +23,7 @@
             --dark: #212529;
             --gray: #6C757D;
             --success: #28a745;
+            --error: #dc3545;
         }
         
         body {
@@ -595,7 +598,7 @@
         .modal input {
             width: 100%;
             padding: 1rem;
-            margin-top: 1.5rem;
+            margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
@@ -605,6 +608,25 @@
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.1);
+        }
+        
+        /* Stripe Payment Element Styling */
+        #stripe-payment-element {
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(42, 92, 130, 0.05);
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+        
+        #stripe-error-message {
+            color: var(--error);
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background-color: rgba(220, 53, 69, 0.1);
+            border-radius: 6px;
+            border-left: 4px solid var(--error);
+            display: none;
         }
         
         /* Footer */
@@ -1099,7 +1121,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-trophy"></i> Competition Preparation Hub</h2>
                 <p>Join our Discord server dedicated to competition preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
-                <a href="https://discord.gg/ajPvn3EfyV" target="_blank" class="discord-button">
+                <a href="https://discord.gg/8AhqvbJy" target="_blank" class="discord-button">
                     <i class="fab fa-discord"></i>
                     Join Competition Prep Server
                 </a>
@@ -1107,7 +1129,7 @@
             </div>
         </section>
 
-        <!-- Payment Modal -->
+        <!-- REAL Payment Modal with Stripe Integration -->
         <div id="payment-modal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1117,7 +1139,7 @@
                 <div class="modal-body">
                     <p style="margin-bottom: 1.5rem; color: var(--gray);">Join our large group session (10-20 students) and receive the recording via email:</p>
                     
-                    <div class="payment-option selected" data-duration="60" data-price="4">
+                    <div class="payment-option selected">
                         <div class="payment-price">£4</div>
                         <div class="payment-duration">60-minute group session</div>
                         <p><strong>Large Group Learning (10-20 students)</strong></p>
@@ -1128,7 +1150,13 @@
                     
                     <input type="email" id="student-email" placeholder="Enter your email address for session recording" required>
                     
-                    <button id="process-payment" class="payment-button">
+                    <!-- Stripe Payment Element will be inserted here -->
+                    <div id="stripe-payment-element"></div>
+                    
+                    <!-- Error message display -->
+                    <div id="stripe-error-message"></div>
+                    
+                    <button id="stripe-submit-button" class="payment-button">
                         <i class="fas fa-lock"></i>
                         Pay £4 and Join Group Session
                     </button>
@@ -1136,6 +1164,41 @@
                     <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray); text-align: center; line-height: 1.5;">
                         <i class="fas fa-video"></i> Session recording will be sent to your email within 1 hour<br>
                         <i class="fas fa-users"></i> Google Meet link will be emailed immediately after payment
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Success Modal -->
+        <div id="success-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: var(--success);">
+                    <h2 style="margin: 0; font-size: 1.5rem;"><i class="fas fa-check-circle"></i> Payment Successful!</h2>
+                    <button class="close-success-modal">&times;</button>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <div style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Booking Confirmed!</h3>
+                    <p style="margin-bottom: 1rem;">A confirmation email has been sent to:</p>
+                    <p id="success-email" style="font-weight: bold; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem;"></p>
+                    <div style="background-color: rgba(42, 92, 130, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left;">
+                        <h4 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> What's in your email:</h4>
+                        <ul style="padding-left: 1.5rem;">
+                            <li>Google Meet link for your group session</li>
+                            <li>Session date and time details</li>
+                            <li>Instructions for joining</li>
+                        </ul>
+                    </div>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                        <i class="fas fa-video"></i> The recording will be sent to this email within 1 hour after the session.
+                    </p>
+                    <button id="close-success" class="cta-button" style="width: 100%;">
+                        <i class="fas fa-thumbs-up"></i> Got It!
+                    </button>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                        Need help? Join our <a href="https://discord.gg/8AhqvbJy" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
                     </p>
                 </div>
             </div>
@@ -1189,6 +1252,12 @@
     </footer>
 
     <script>
+        // Initialize Stripe with YOUR publishable key
+        // Get this from: https://dashboard.stripe.com/test/apikeys
+        const stripe = Stripe('pk_test_your_publishable_key_here');
+        let elements;
+        let currentEmail = '';
+
         // Navigation between pages with smooth scrolling to sections
         document.querySelectorAll('.nav-link, .footer-section a, .logo').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1196,7 +1265,7 @@
                 
                 // If it's a book session link
                 if(this.id === 'book-session' || this.id === 'book-now' || this.id === 'footer-book') {
-                    document.getElementById('payment-modal').style.display = 'flex';
+                    showPaymentModal();
                     return;
                 }
                 
@@ -1268,44 +1337,58 @@
 
         // Payment Modal Functionality
         const paymentModal = document.getElementById('payment-modal');
+        const successModal = document.getElementById('success-modal');
         const closeModal = document.querySelector('.close-modal');
-        const processPaymentBtn = document.getElementById('process-payment');
+        const closeSuccessModal = document.querySelector('.close-success-modal');
+        const processPaymentBtn = document.getElementById('stripe-submit-button');
         const studentEmailInput = document.getElementById('student-email');
-        const paymentOptions = document.querySelectorAll('.payment-option');
+        const successEmailElement = document.getElementById('success-email');
 
-        // Close modal when clicking X
+        // Show payment modal
+        function showPaymentModal() {
+            paymentModal.style.display = 'flex';
+            studentEmailInput.focus();
+        }
+
+        // Close payment modal
         closeModal.addEventListener('click', () => {
             paymentModal.style.display = 'none';
             resetPaymentForm();
         });
 
-        // Close modal when clicking outside
-        paymentModal.addEventListener('click', (e) => {
-            if(e.target === paymentModal) {
-                paymentModal.style.display = 'none';
-                resetPaymentForm();
-            }
+        // Close success modal
+        closeSuccessModal.addEventListener('click', () => {
+            successModal.style.display = 'none';
         });
 
-        // Select payment option
-        paymentOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                paymentOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-                
-                // Update payment button text with selected price
-                const price = option.dataset.price;
-                const duration = option.dataset.duration;
-                processPaymentBtn.innerHTML = `<i class="fas fa-lock"></i> Pay £${price} and Join ${duration}-min Group Session`;
+        document.getElementById('close-success').addEventListener('click', () => {
+            successModal.style.display = 'none';
+        });
+
+        // Close modals when clicking outside
+        [paymentModal, successModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if(e.target === modal) {
+                    modal.style.display = 'none';
+                    if(modal === paymentModal) {
+                        resetPaymentForm();
+                    }
+                }
             });
         });
 
         // Reset payment form
         function resetPaymentForm() {
             studentEmailInput.value = '';
-            processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
             processPaymentBtn.disabled = false;
-            processPaymentBtn.style.backgroundColor = '';
+            processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+            document.getElementById('stripe-error-message').style.display = 'none';
+            document.getElementById('stripe-error-message').textContent = '';
+            
+            // Clear Stripe Elements if they exist
+            if(elements) {
+                elements.getElement('payment').clear();
+            }
         }
 
         // Email validation function
@@ -1314,13 +1397,12 @@
             return emailRegex.test(email);
         }
 
-        // Process Payment
-        processPaymentBtn.addEventListener('click', () => {
+        // Initialize Stripe payment
+        async function initializeStripePayment() {
             const email = studentEmailInput.value.trim();
             
-            // Email validation
             if(!email) {
-                alert('Please enter your email address to receive the session recording.');
+                alert('Please enter your email address first.');
                 studentEmailInput.focus();
                 return;
             }
@@ -1331,92 +1413,141 @@
                 return;
             }
             
-            // Get selected payment option
-            const selectedOption = document.querySelector('.payment-option.selected');
-            const price = selectedOption.dataset.price;
-            const duration = selectedOption.dataset.duration;
+            currentEmail = email;
+            
+            // Show loading state
+            processPaymentBtn.disabled = true;
+            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting up payment...';
+            
+            try {
+                // In a real application, you would call your backend here
+                // Example: const response = await fetch('/create-payment-intent', { ... })
+                // For now, we'll use a mock client secret
+                
+                // Mock payment intent creation (REPLACE WITH REAL BACKEND CALL)
+                const mockClientSecret = 'pi_mock_client_secret_123456';
+                
+                // Configure Stripe Elements
+                elements = stripe.elements({
+                    clientSecret: mockClientSecret,
+                    appearance: {
+                        theme: 'stripe',
+                        variables: {
+                            colorPrimary: '#2A5C82',
+                            colorBackground: '#F8F9FA',
+                            colorText: '#212529',
+                            colorDanger: '#dc3545',
+                            fontFamily: '"Segoe UI", system-ui, sans-serif',
+                            borderRadius: '8px',
+                        }
+                    }
+                });
+                
+                // Create and mount the Payment Element
+                const paymentElement = elements.create('payment');
+                paymentElement.mount('#stripe-payment-element');
+                
+                // Enable submit button
+                processPaymentBtn.disabled = false;
+                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+                
+            } catch (error) {
+                console.error('Error initializing payment:', error);
+                showError('Failed to initialize payment. Please try again.');
+                processPaymentBtn.disabled = false;
+                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorElement = document.getElementById('stripe-error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Hide error message
+        function hideError() {
+            const errorElement = document.getElementById('stripe-error-message');
+            errorElement.style.display = 'none';
+        }
+
+        // Handle form submission
+        processPaymentBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            
+            const email = studentEmailInput.value.trim();
+            
+            if(!email) {
+                showError('Please enter your email address.');
+                return;
+            }
+            
+            if(!isValidEmail(email)) {
+                showError('Please enter a valid email address.');
+                return;
+            }
+            
+            // Check if Stripe is initialized
+            if(!elements) {
+                await initializeStripePayment();
+                return;
+            }
             
             // Show processing state
-            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
             processPaymentBtn.disabled = true;
+            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            hideError();
             
-            // Simulate payment processing (2 seconds)
-            setTimeout(() => {
-                // Success simulation
-                processPaymentBtn.innerHTML = '<i class="fas fa-check"></i> Payment Successful!';
-                processPaymentBtn.style.backgroundColor = 'var(--success)';
+            try {
+                // In a real application, you would confirm the payment with Stripe
+                // Example: const result = await stripe.confirmPayment({ elements, ... });
                 
-                // Simulate sending confirmation email (0.5 seconds after payment)
-                setTimeout(() => {
-                    // Create success modal
-                    const successModal = document.createElement('div');
-                    successModal.className = 'modal';
-                    successModal.style.display = 'flex';
-                    successModal.innerHTML = `
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color: var(--success);">
-                                <h2 style="margin: 0; font-size: 1.5rem;"><i class="fas fa-check-circle"></i> Payment Successful!</h2>
-                                <button class="close-modal">&times;</button>
-                            </div>
-                            <div class="modal-body" style="text-align: center;">
-                                <div style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;">
-                                    <i class="fas fa-check-circle"></i>
-                                </div>
-                                <h3 style="color: var(--primary); margin-bottom: 1rem;">Booking Confirmed!</h3>
-                                <p style="margin-bottom: 1rem;">A confirmation email has been sent to:</p>
-                                <p style="font-weight: bold; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem;">${email}</p>
-                                <div style="background-color: rgba(42, 92, 130, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left;">
-                                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> What's in your email:</h4>
-                                    <ul style="padding-left: 1.5rem;">
-                                        <li>Google Meet link for your group session</li>
-                                        <li>Session date and time details</li>
-                                        <li>Instructions for joining</li>
-                                    </ul>
-                                </div>
-                                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;">
-                                    <i class="fas fa-video"></i> The session recording will be sent to this email within 1 hour after the session ends.
-                                </p>
-                                <button id="close-success" class="cta-button" style="width: 100%;">
-                                    <i class="fas fa-thumbs-up"></i> Got It!
-                                </button>
-                                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
-                                    Need help? Join our <a href="https://discord.gg/8AhqvbJy" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
-                                </p>
-                            </div>
-                        </div>
-                    `;
+                // For now, simulate a successful payment (REPLACE WITH REAL STRIPE CALL)
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // Simulate successful payment
+                const mockResult = { error: null };
+                
+                if (mockResult.error) {
+                    // Handle errors
+                    showError(mockResult.error.message);
+                    processPaymentBtn.disabled = false;
+                    processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+                } else {
+                    // Payment succeeded
+                    showSuccess(email);
                     
-                    document.body.appendChild(successModal);
+                    // In a real application, you would send the email to your backend
+                    // Example: await fetch('/confirm-booking', { method: 'POST', body: JSON.stringify({ email }) });
                     
-                    // Close success modal
-                    successModal.querySelector('.close-modal').addEventListener('click', () => {
-                        successModal.remove();
-                        paymentModal.style.display = 'none';
-                        resetPaymentForm();
-                    });
-                    
-                    successModal.querySelector('#close-success').addEventListener('click', () => {
-                        successModal.remove();
-                        paymentModal.style.display = 'none';
-                        resetPaymentForm();
-                    });
-                    
-                    successModal.addEventListener('click', (e) => {
-                        if(e.target === successModal) {
-                            successModal.remove();
-                            paymentModal.style.display = 'none';
-                            resetPaymentForm();
-                        }
-                    });
-                    
-                    // Log to console (in real implementation, this would be server-side)
-                    console.log(`Payment processed for ${email}. Amount: £${price}. Duration: ${duration} minutes.`);
-                    console.log('Google Meet link sent to email.');
+                    console.log('Payment successful for:', email);
+                    console.log('Send Google Meet link to:', email);
                     console.log('Discord server: https://discord.gg/8AhqvbJy');
-                    
-                }, 500);
+                }
                 
-            }, 2000);
+            } catch (error) {
+                console.error('Payment error:', error);
+                showError('Payment failed. Please try again.');
+                processPaymentBtn.disabled = false;
+                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+            }
+        });
+
+        // Show success modal
+        function showSuccess(email) {
+            paymentModal.style.display = 'none';
+            successEmailElement.textContent = email;
+            successModal.style.display = 'flex';
+            resetPaymentForm();
+        }
+
+        // Initialize payment when email is entered and user clicks in payment element area
+        studentEmailInput.addEventListener('blur', async () => {
+            const email = studentEmailInput.value.trim();
+            if(email && isValidEmail(email) && !elements) {
+                await initializeStripePayment();
+            }
         });
 
         // Make headings editable on double-click
@@ -1515,44 +1646,36 @@
             // Set initial active page
             showPage('home-page');
             updateActiveNav('home');
+            
+            // Auto-scroll to top when page loads
+            window.scrollTo(0, 0);
         });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            // Escape key closes modal
+            // Escape key closes modals
             if(e.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if(modal.style.display === 'flex') {
-                        modal.style.display = 'none';
-                        if(modal === paymentModal) {
-                            resetPaymentForm();
-                        }
-                    }
-                });
+                if(paymentModal.style.display === 'flex') {
+                    paymentModal.style.display = 'none';
+                    resetPaymentForm();
+                }
+                if(successModal.style.display === 'flex') {
+                    successModal.style.display = 'none';
+                }
             }
             
             // Ctrl+B to book session
             if(e.ctrlKey && e.key === 'b') {
                 e.preventDefault();
-                document.getElementById('payment-modal').style.display = 'flex';
+                showPaymentModal();
             }
         });
 
-        // Add smooth scrolling for subject cards
+        // Add click handler for subject cards to open booking modal
         document.querySelectorAll('.subject-card').forEach(card => {
             card.addEventListener('click', function() {
-                // Find the book session button and trigger click
-                const bookBtn = document.getElementById('book-session');
-                if(bookBtn) {
-                    bookBtn.click();
-                }
+                showPaymentModal();
             });
-        });
-
-        // Auto-scroll to top when page loads
-        window.addEventListener('load', () => {
-            window.scrollTo(0, 0);
         });
     </script>
 </body>
