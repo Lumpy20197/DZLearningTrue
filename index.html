@@ -551,7 +551,7 @@
             height: 24px;
             border-radius: 50%;
             display: flex;
-            align-items: center;
+                align-items: center;
             justify-content: center;
             font-weight: bold;
         }
@@ -1253,8 +1253,7 @@
 
     <script>
         // Initialize Stripe with YOUR publishable key
-        // Get this from: https://dashboard.stripe.com/test/apikeys
-        const stripe = Stripe('pk_test_your_publishable_key_here');
+        const stripe = Stripe('pk_test_51Sibrp9t0PTDZrecW1oLxSDZRTAsEmgp7xEbepI2SKhaS1WmOkJs2bTiwKoI3VjgQDFrhIPZ2CoS9Aj58iy2RHXW00asjJlX4C');
         let elements;
         let currentEmail = '';
 
@@ -1397,6 +1396,27 @@
             return emailRegex.test(email);
         }
 
+        // Show error message
+        function showError(message) {
+            const errorElement = document.getElementById('stripe-error-message');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+        }
+
+        // Hide error message
+        function hideError() {
+            const errorElement = document.getElementById('stripe-error-message');
+            errorElement.style.display = 'none';
+        }
+
+        // Show success modal
+        function showSuccess(email) {
+            paymentModal.style.display = 'none';
+            successEmailElement.textContent = email;
+            successModal.style.display = 'flex';
+            resetPaymentForm();
+        }
+
         // Initialize Stripe payment
         async function initializeStripePayment() {
             const email = studentEmailInput.value.trim();
@@ -1408,7 +1428,7 @@
             }
             
             if(!isValidEmail(email)) {
-                alert('Please enter a valid email address (e.g., name@example.com).');
+                alert('Please enter a valid email address.');
                 studentEmailInput.focus();
                 return;
             }
@@ -1420,16 +1440,20 @@
             processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting up payment...';
             
             try {
-                // In a real application, you would call your backend here
-                // Example: const response = await fetch('/create-payment-intent', { ... })
-                // For now, we'll use a mock client secret
+                // CALL YOUR BACKEND
+                const response = await fetch('http://localhost:3000/create-payment-intent', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
                 
-                // Mock payment intent creation (REPLACE WITH REAL BACKEND CALL)
-                const mockClientSecret = 'pi_mock_client_secret_123456';
+                const data = await response.json();
                 
                 // Configure Stripe Elements
                 elements = stripe.elements({
-                    clientSecret: mockClientSecret,
+                    clientSecret: data.clientSecret,
                     appearance: {
                         theme: 'stripe',
                         variables: {
@@ -1452,27 +1476,14 @@
                 processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
                 
             } catch (error) {
-                console.error('Error initializing payment:', error);
+                console.error('Error:', error);
                 showError('Failed to initialize payment. Please try again.');
                 processPaymentBtn.disabled = false;
                 processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
             }
         }
 
-        // Show error message
-        function showError(message) {
-            const errorElement = document.getElementById('stripe-error-message');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-
-        // Hide error message
-        function hideError() {
-            const errorElement = document.getElementById('stripe-error-message');
-            errorElement.style.display = 'none';
-        }
-
-        // Handle form submission
+        // Handle form submission - REAL PAYMENT
         processPaymentBtn.addEventListener('click', async (e) => {
             e.preventDefault();
             
@@ -1500,30 +1511,38 @@
             hideError();
             
             try {
-                // In a real application, you would confirm the payment with Stripe
-                // Example: const result = await stripe.confirmPayment({ elements, ... });
+                // REAL STRIPE PAYMENT
+                const { error, paymentIntent } = await stripe.confirmPayment({
+                    elements,
+                    confirmParams: {
+                        return_url: window.location.origin,
+                    },
+                    redirect: 'if_required'
+                });
                 
-                // For now, simulate a successful payment (REPLACE WITH REAL STRIPE CALL)
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                
-                // Simulate successful payment
-                const mockResult = { error: null };
-                
-                if (mockResult.error) {
-                    // Handle errors
-                    showError(mockResult.error.message);
+                if (error) {
+                    showError(error.message);
                     processPaymentBtn.disabled = false;
                     processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
                 } else {
-                    // Payment succeeded
+                    // Payment succeeded - notify backend
+                    await fetch('http://localhost:3000/confirm-booking', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ 
+                            email: email,
+                            payment_id: paymentIntent.id 
+                        })
+                    });
+                    
                     showSuccess(email);
                     
-                    // In a real application, you would send the email to your backend
-                    // Example: await fetch('/confirm-booking', { method: 'POST', body: JSON.stringify({ email }) });
+                    console.log('Payment successful!');
+                    console.log('Payment ID:', paymentIntent.id);
+                    console.log('Email sent to:', email);
                     
-                    console.log('Payment successful for:', email);
-                    console.log('Send Google Meet link to:', email);
-                    console.log('Discord server: https://discord.gg/8AhqvbJy');
                 }
                 
             } catch (error) {
@@ -1533,14 +1552,6 @@
                 processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
             }
         });
-
-        // Show success modal
-        function showSuccess(email) {
-            paymentModal.style.display = 'none';
-            successEmailElement.textContent = email;
-            successModal.style.display = 'flex';
-            resetPaymentForm();
-        }
 
         // Initialize payment when email is entered and user clicks in payment element area
         studentEmailInput.addEventListener('blur', async () => {
