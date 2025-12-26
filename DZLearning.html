@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DZLearning - Group Tutoring by Top Students</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        
+        :root {
+            --primary: #2A5C82;
+            --secondary: #3A7CA5;
+            --accent: #F9A826;
+            --light: #F8F9FA;
+            --dark: #212529;
+            --gray: #6C757D;
+            --success: #28a745;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+        
+        .top-nav {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(42, 92, 130, 0.1);
+            color: var(--primary);
+        }
+        
+        .nav-link.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(42, 92, 130, 0.2);
+        }
+        
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(249, 168, 38, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(249, 168, 38, 0.4);
+            background-color: #e69820;
+        }
+        
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .social-link.instagram {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+        }
+        
+        .social-link.tiktok {
+            background: linear-gradient(45deg, #000000, #25F4EE, #FE2C55);
+        }
+        
+        .social-link.discord {
+            background: linear-gradient(45deg, #5865F2, #7289DA);
+        }
+        
+        /* Editable Paragraph */
+        .editable-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .editable-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .editable-section h2:hover {
+            color: var(--secondary);
+            background-color: rgba(42, 92, 130, 0.05);
+        }
+        
+        .section-anchor {
+            margin-top: -80px;
+            padding-top: 80px;
+            display: block;
+        }
+        
+        .editable-content {
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px dashed #ddd;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+        
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        /* Subject Cards */
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .subject-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .subject-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .subject-icon {
+            background-color: var(--primary);
+            color: white;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .subject-content {
+            padding: 1.5rem;
+        }
+        
+        .subject-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        /* Tutors Grid */
+        .tutors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .tutor-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tutor-img {
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+        
+        .student-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .tutor-info {
+            padding: 1.5rem;
+        }
+        
+        .tutor-name {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .tutor-qualification {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .tutor-achievements {
+            background-color: rgba(42, 92, 130, 0.05);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .tutor-achievements h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .tutor-achievements ul {
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+        }
+        
+        .tutor-achievements li {
+            margin-bottom: 0.25rem;
+        }
+        
+        /* Group Sessions Badge */
+        .group-session-badge {
+            display: inline-block;
+            background-color: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        /* Recorded Lessons Feature */
+        .recorded-feature {
+            background-color: rgba(42, 92, 130, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .recorded-icon {
+            background-color: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+        
+        /* Discord Community Section */
+        .discord-community {
+            background: linear-gradient(135deg, #5865F2, #7289DA);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-community h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        
+        .discord-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: white;
+            color: #5865F2;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .discord-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        /* Payment Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 12px;
+            overflow: hidden;
+            animation: modalSlideIn 0.3s ease;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-option {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--accent);
+            background-color: rgba(249, 168, 38, 0.05);
+        }
+        
+        .payment-option.selected {
+            border-color: var(--accent);
+            background-color: rgba(249, 168, 38, 0.1);
+        }
+        
+        .payment-option.selected::before {
+            content: '✓';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--accent);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .payment-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .payment-duration {
+            color: var(--gray);
+            margin-top: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .payment-button {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .payment-button:hover:not(:disabled) {
+            background-color: var(--secondary);
+        }
+        
+        .payment-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .modal input {
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .modal input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(249, 168, 38, 0.1);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section a {
+            color: #ddd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-discord-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #5865F2;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-discord-button:hover {
+            background-color: #4752c4;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .top-nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .editable-section {
+                padding: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .social-link {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .recorded-feature {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            
+            .tutors-grid, .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section a {
+                justify-content: center;
+            }
+            
+            .discord-community {
+                padding: 2rem 1rem;
+                margin: 2rem 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>DZLearning</span>
+            </a>
+            <nav class="top-nav">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
+                <a href="#supercurriculars" class="nav-link" data-page="supercurriculars">Supercurriculars</a>
+                <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
+                <a href="#" class="nav-link" id="book-session">Book Session</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Homepage -->
+        <section id="home-page" class="page active">
+            <div class="hero">
+                <h1>Group Tutoring by Top-Achieving Students</h1>
+                <p>Learn from highly academic students who recently aced their exams. Get relatable, effective tutoring in large groups at an affordable price.</p>
+                <button class="cta-button" id="book-now">Book Your Group Session Now</button>
+                
+                <div class="social-links">
+                    <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram">
+                        <i class="fab fa-instagram"></i>
+                        <span>Follow @dylanzhang.09</span>
+                    </a>
+                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok">
+                        <i class="fab fa-tiktok"></i>
+                        <span>Follow @dylanzhang.009</span>
+                    </a>
+                    <a href="https://discord.gg/8AhqvbJy" target="_blank" class="social-link discord">
+                        <i class="fab fa-discord"></i>
+                        <span>Join Discord Server</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="about" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="about-heading"><i class="fas fa-info-circle"></i> About DZLearning</h2>
+                <div class="editable-content" contenteditable="false">
+                    At DZLearning, we believe the best teachers are often those who recently excelled in the exact exams you're preparing for. Our tutors are top-achieving students who aced their GCSEs with straight 9s and are now studying at top universities. They understand exactly what it takes to succeed because they've done it themselves, recently!
+
+                    We specialize in <strong>large group sessions</strong> where you can learn alongside peers, ask questions, and benefit from collaborative learning at just £4 per session. All sessions are <strong>recorded and sent to your email</strong> after each class, so you can rewatch and reinforce your learning anytime.
+
+                    Follow my learning journey on Instagram (@dylanzhang.09) and TikTok (@dylanzhang.009) for study tips, exam advice, and behind-the-scenes of our tutoring sessions!
+                </div>
+            </div>
+            
+            <div id="features" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="features-heading"><i class="fas fa-star"></i> Why Choose DZLearning?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Top Student Tutors</h3>
+                        <p>Learn from students who recently achieved straight 9s at GCSE and are now at top 6th forms.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Large Group Sessions</h3>
+                        <p>Interactive group learning with over 20 students per session. Learn from peers' questions and benefit from collaborative problem-solving.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Recorded Lessons</h3>
+                        <p>Every session is recorded and sent to your email. Rewatch difficult concepts, review before exams, and learn at your own pace.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-pound-sign"></i>
+                        </div>
+                        <h3>Super Affordable</h3>
+                        <p>High-quality group tutoring at just £4 per session. No hidden fees or long-term commitments. Cancel anytime.</p>
+                    </div>
+                </div>
+                
+                <div class="recorded-feature">
+                    <div class="recorded-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h3>📧 Recorded Lessons Delivered to Your Inbox</h3>
+                        <p>After every group session, you'll receive a recording via email. Perfect for reviewing tricky topics, catching up if you miss a session, or reinforcing your learning before exams. Watch as many times as you need!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Discord Community Section -->
+            <div class="discord-community">
+                <h2><i class="fab fa-discord"></i> Join Our Study Community</h2>
+                <p>Connect with other students, share study resources, ask questions, and get exclusive updates about upcoming group sessions!</p>
+                <a href="https://discord.gg/8AhqvbJy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join Discord Server
+                </a>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">discord.gg/8AhqvbJy</p>
+            </div>
+        </section>
+
+        <!-- GCSE Subjects Page -->
+        <section id="gcse-page" class="page">
+            <div id="gcse" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="gcse-heading"><i class="fas fa-book"></i> GCSE Group Tutoring</h2>
+                <div class="group-session-badge">Large Group Sessions (10-20 students)</div>
+                <p>Join our interactive group sessions for GCSE subjects. All sessions are recorded and sent to your email.</p>
+                <div class="subjects-grid">
+                    <div class="subject-card" data-subject="maths">
+                        <div class="subject-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Mathematics</h3>
+                            <p>Group sessions covering all GCSE Maths topics. Learn from a student who achieved Grade 9 and now studies Maths at Cambridge.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-subject="physics">
+                        <div class="subject-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Physics</h3>
+                            <p>Interactive physics sessions with demonstrations and problem-solving. Tutor achieved A* in A-Level Physics.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-subject="chemistry">
+                        <div class="subject-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Chemistry</h3>
+                            <p>Master chemical concepts with our Oxford Chemistry student tutor. Group discussions and practice questions.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-subject="biology">
+                        <div class="subject-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Biology</h3>
+                            <p>Learn biology from a medical student who achieved top grades. Interactive sessions with diagrams and explanations.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-users"></i> Study Together on Discord</h2>
+                <p>Join our Discord server to form study groups, share resources, and get help from peers preparing for the same GCSE subjects!</p>
+                <a href="https://discord.gg/8AhqvbJy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join GCSE Study Group
+                </a>
+            </div>
+        </section>
+
+        <!-- Our Tutors Page -->
+        <section id="tutors-page" class="page">
+            <div id="tutors" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="tutors-heading"><i class="fas fa-users"></i> Our Top Student Tutors</h2>
+                <p>Learn from highly accomplished students who recently excelled in their exams:</p>
+                <div class="tutors-grid">
+                    <div class="tutor-card">
+                        <div class="tutor-img">
+                            <i class="fas fa-user-graduate fa-3x"></i>
+                            <div class="student-badge">STUDENT TUTOR</div>
+                        </div>
+                        <div class="tutor-info">
+                            <h3 class="tutor-name">Christopher Lu</h3>
+                            <div class="tutor-qualification">
+                                <i class="fas fa-university"></i>
+                                Eton College, Kings College
+                            </div>
+                            <p>Achieved 9s in all GCSEs and 4A*s predicted at A-Level. Specializes in making complex concepts simple and relatable.</p>
+                            <div class="tutor-achievements">
+                                <h4>Key Achievements:</h4>
+                                <ul>
+                                    <li>12 GCSEs at Grade 9</li>
+                                    <li>4A* predicted A-Level (Maths, Further Maths, Physics, Chemistry)</li>
+                                    <li>UKMT Senior Maths Challenge Gold</li>
+                                    <li>Chemistry Olympiad Gold</li>
+                                    <li>UCAT 2400</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutor-card">
+                        <div class="tutor-img">
+                            <i class="fas fa-user-md fa-3x"></i>
+                            <div class="student-badge">STUDENT TUTOR</div>
+                        </div>
+                        <div class="tutor-info">
+                            <h3 class="tutor-name">Ethan Zhao</h3>
+                            <div class="tutor-qualification">
+                                <i class="fas fa-university"></i>
+                                Magdalen College School Student
+                            </div>
+                            <p>Achieved 10 9's at GCSE and is now studying Maths, Further Maths, Physics, Geography and Theology</p>
+                            <div class="tutor-achievements">
+                                <h4>Key Achievements:</h4>
+                                <ul>
+                                    <li>10 9s in GCSE</li>
+                                    <li>Olympiad and Gold in Senior Maths Challenge</li>
+                                    <li>UKLO silver in linguistics</li>
+                                    <li>Currently top of class in physics and maths</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tutor-card">
+                        <div class="tutor-img">
+                            <i class="fas fa-laptop-code fa-3x"></i>
+                            <div class="student-badge">STUDENT TUTOR</div>
+                        </div>
+                        <div class="tutor-info">
+                            <h3 class="tutor-name">Barak Jin</h3>
+                            <div class="tutor-qualification">
+                                <i class="fas fa-university"></i>
+                                At Winchester College, with Academic Scholarship
+                            </div>
+                            <p>Mathematics prodigy who achieved perfect scores senior maths challenge. Breaks down maths to a simple and understandable method.</p>
+                            <div class="tutor-achievements">
+                                <h4>Key Achievements:</h4>
+                                <ul>
+                                    <li>12 grade 9's at GCSE</li>
+                                    <li>BMO Round 2 Qualifier</li>
+                                    <li>Has gone to oxford maths camp (invitational)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-comments"></i> Connect with Tutors on Discord</h2>
+                <p>Join our Discord server to ask questions directly to our tutors, participate in Q&A sessions, and connect with other students!</p>
+                <a href="https://discord.gg/8AhqvbJy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join Tutor Q&A Channel
+                </a>
+            </div>
+        </section>
+
+        <!-- Supercurriculars Page -->
+        <section id="supercurriculars-page" class="page">
+            <div id="supercurriculars" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="supercurriculars-heading"><i class="fas fa-trophy"></i> Supercurricular Group Sessions</h2>
+                <div class="group-session-badge">Interactive Group Learning</div>
+                <p>Specialized group sessions for academic competitions and enrichment activities. Recordings provided for review.</p>
+                <div class="subjects-grid">
+                    <div class="subject-card" data-super="maths-challenge">
+                        <div class="subject-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>UK Mathematics Challenge</h3>
+                            <p>Group preparation for Junior, Intermediate and Senior Mathematics Challenges. Past paper practice and strategy sessions.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-super="physics-olympiad">
+                        <div class="subject-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Physics Olympiad</h3>
+                            <p>Group sessions on advanced physics problem-solving techniques. Preparation for senior physics challenge targeted towards yr12 and BphO targeted towards yr13</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-super="chemistry-challenge">
+                        <div class="subject-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Chemistry Challenge</h3>
+                            <p>Group preparation for national chemistry competitions with focus on organic and physical chemistry. Preparing you for the Chemistry Challenge on 31st January.</p>
+                            <small>📧 Recording sent after each session</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recorded-feature">
+                    <div class="recorded-icon">
+                        <i class="fas fa-share-square"></i>
+                    </div>
+                    <div>
+                        <h3>🔗 Connect with Me on Social Media</h3>
+                        <p>Follow my learning journey and get daily study tips! On Instagram (@dylanzhang.09) I share study routines and exam advice. On TikTok (@dylanzhang.009) you'll find quick revision tips and behind-the-scenes of our tutoring sessions. I often share exclusive content about upcoming group sessions and competition preparation!</p>
+                        <div class="social-links" style="margin-top: 1rem; justify-content: flex-start;">
+                            <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-instagram"></i>
+                                <span>@dylanzhang.09</span>
+                            </a>
+                            <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-tiktok"></i>
+                                <span>@dylanzhang.009</span>
+                            </a>
+                            <a href="https://discord.gg/8AhqvbJy" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-discord"></i>
+                                <span>Join Discord</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-trophy"></i> Competition Preparation Hub</h2>
+                <p>Join our Discord server dedicated to competition preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
+                <a href="https://discord.gg/ajPvn3EfyV" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join Competition Prep Server
+                </a>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">discord.gg/8AhqvbJy</p>
+            </div>
+        </section>
+
+        <!-- Payment Modal -->
+        <div id="payment-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 style="margin: 0; font-size: 1.5rem;">Book Your Group Tutoring Session</h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p style="margin-bottom: 1.5rem; color: var(--gray);">Join our large group session (10-20 students) and receive the recording via email:</p>
+                    
+                    <div class="payment-option selected" data-duration="60" data-price="4">
+                        <div class="payment-price">£4</div>
+                        <div class="payment-duration">60-minute group session</div>
+                        <p><strong>Large Group Learning (10-20 students)</strong></p>
+                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Recording sent to your email after session</p>
+                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Interactive group discussion</p>
+                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Q&A with top student tutor</p>
+                    </div>
+                    
+                    <input type="email" id="student-email" placeholder="Enter your email address for session recording" required>
+                    
+                    <button id="process-payment" class="payment-button">
+                        <i class="fas fa-lock"></i>
+                        Pay £4 and Join Group Session
+                    </button>
+                    
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray); text-align: center; line-height: 1.5;">
+                        <i class="fas fa-video"></i> Session recording will be sent to your email within 1 hour<br>
+                        <i class="fas fa-users"></i> Google Meet link will be emailed immediately after payment
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>DZLearning</h3>
+                <p style="margin-bottom: 1rem; opacity: 0.9;">Group tutoring by top-achieving students.</p>
+                <p style="font-weight: 600; color: var(--accent);">Affordable • Relatable • Effective</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="https://instagram.com/dylanzhang.09" target="_blank">
+                        <i class="fab fa-instagram"></i> @dylanzhang.09
+                    </a>
+                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank">
+                        <i class="fab fa-tiktok"></i> @dylanzhang.009
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home" data-page="home">Home</a>
+                <a href="#gcse" data-page="gcse">GCSE Group Sessions</a>
+                <a href="#supercurriculars" data-page="supercurriculars">Supercurriculars</a>
+                <a href="#tutors" data-page="tutors">Our Student Tutors</a>
+                <a href="#" id="footer-book">Book Group Session</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Features</h3>
+                <a><i class="fas fa-user-graduate"></i> Top Student Tutors</a>
+                <a><i class="fas fa-users"></i> Large Group Sessions</a>
+                <a><i class="fas fa-video"></i> Recorded Lessons</a>
+                <a><i class="fas fa-pound-sign"></i> Only £4 per session</a>
+                <a><i class="fas fa-envelope"></i> Email Delivery</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Join Our Community</h3>
+                <a href="https://discord.gg/8AhqvbJy" target="_blank" class="footer-discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join Discord Server
+                </a>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">Connect with other students, get study tips, and receive updates!</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation between pages with smooth scrolling to sections
+        document.querySelectorAll('.nav-link, .footer-section a, .logo').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // If it's a book session link
+                if(this.id === 'book-session' || this.id === 'book-now' || this.id === 'footer-book') {
+                    document.getElementById('payment-modal').style.display = 'flex';
+                    return;
+                }
+                
+                // Handle logo click - scroll to top
+                if(this.classList.contains('logo')) {
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                    showPage('home-page');
+                    updateActiveNav('home');
+                    return;
+                }
+                
+                // Handle section heading clicks
+                if(this.tagName === 'H2' && this.id.includes('heading')) {
+                    const sectionId = this.id.replace('-heading', '');
+                    const sectionElement = document.getElementById(sectionId);
+                    if(sectionElement) {
+                        // If we're not on the right page, switch to it first
+                        if(sectionId === 'about' || sectionId === 'features') {
+                            showPage('home-page');
+                            updateActiveNav('home');
+                        } else {
+                            showPage(`${sectionId}-page`);
+                            updateActiveNav(sectionId);
+                        }
+                        
+                        // Scroll to the section
+                        setTimeout(() => {
+                            sectionElement.scrollIntoView({behavior: 'smooth'});
+                        }, 100);
+                        return;
+                    }
+                }
+                
+                // Handle regular navigation links
+                const page = this.dataset.page;
+                if(page) {
+                    showPage(`${page}-page`);
+                    updateActiveNav(page);
+                    
+                    // Scroll to top when switching pages
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                }
+            });
+        });
+
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the selected page
+            const activePage = document.getElementById(pageId);
+            if(activePage) {
+                activePage.classList.add('active');
+            }
+        }
+
+        // Function to update active navigation link
+        function updateActiveNav(page) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.dataset.page === page) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Payment Modal Functionality
+        const paymentModal = document.getElementById('payment-modal');
+        const closeModal = document.querySelector('.close-modal');
+        const processPaymentBtn = document.getElementById('process-payment');
+        const studentEmailInput = document.getElementById('student-email');
+        const paymentOptions = document.querySelectorAll('.payment-option');
+
+        // Close modal when clicking X
+        closeModal.addEventListener('click', () => {
+            paymentModal.style.display = 'none';
+            resetPaymentForm();
+        });
+
+        // Close modal when clicking outside
+        paymentModal.addEventListener('click', (e) => {
+            if(e.target === paymentModal) {
+                paymentModal.style.display = 'none';
+                resetPaymentForm();
+            }
+        });
+
+        // Select payment option
+        paymentOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+                
+                // Update payment button text with selected price
+                const price = option.dataset.price;
+                const duration = option.dataset.duration;
+                processPaymentBtn.innerHTML = `<i class="fas fa-lock"></i> Pay £${price} and Join ${duration}-min Group Session`;
+            });
+        });
+
+        // Reset payment form
+        function resetPaymentForm() {
+            studentEmailInput.value = '';
+            processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
+            processPaymentBtn.disabled = false;
+            processPaymentBtn.style.backgroundColor = '';
+        }
+
+        // Email validation function
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Process Payment
+        processPaymentBtn.addEventListener('click', () => {
+            const email = studentEmailInput.value.trim();
+            
+            // Email validation
+            if(!email) {
+                alert('Please enter your email address to receive the session recording.');
+                studentEmailInput.focus();
+                return;
+            }
+            
+            if(!isValidEmail(email)) {
+                alert('Please enter a valid email address (e.g., name@example.com).');
+                studentEmailInput.focus();
+                return;
+            }
+            
+            // Get selected payment option
+            const selectedOption = document.querySelector('.payment-option.selected');
+            const price = selectedOption.dataset.price;
+            const duration = selectedOption.dataset.duration;
+            
+            // Show processing state
+            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Payment...';
+            processPaymentBtn.disabled = true;
+            
+            // Simulate payment processing (2 seconds)
+            setTimeout(() => {
+                // Success simulation
+                processPaymentBtn.innerHTML = '<i class="fas fa-check"></i> Payment Successful!';
+                processPaymentBtn.style.backgroundColor = 'var(--success)';
+                
+                // Simulate sending confirmation email (0.5 seconds after payment)
+                setTimeout(() => {
+                    // Create success modal
+                    const successModal = document.createElement('div');
+                    successModal.className = 'modal';
+                    successModal.style.display = 'flex';
+                    successModal.innerHTML = `
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: var(--success);">
+                                <h2 style="margin: 0; font-size: 1.5rem;"><i class="fas fa-check-circle"></i> Payment Successful!</h2>
+                                <button class="close-modal">&times;</button>
+                            </div>
+                            <div class="modal-body" style="text-align: center;">
+                                <div style="font-size: 4rem; color: var(--success); margin-bottom: 1rem;">
+                                    <i class="fas fa-check-circle"></i>
+                                </div>
+                                <h3 style="color: var(--primary); margin-bottom: 1rem;">Booking Confirmed!</h3>
+                                <p style="margin-bottom: 1rem;">A confirmation email has been sent to:</p>
+                                <p style="font-weight: bold; color: var(--primary); font-size: 1.1rem; margin-bottom: 1.5rem;">${email}</p>
+                                <div style="background-color: rgba(42, 92, 130, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: left;">
+                                    <h4 style="color: var(--primary); margin-bottom: 0.5rem;"><i class="fas fa-envelope"></i> What's in your email:</h4>
+                                    <ul style="padding-left: 1.5rem;">
+                                        <li>Google Meet link for your group session</li>
+                                        <li>Session date and time details</li>
+                                        <li>Instructions for joining</li>
+                                    </ul>
+                                </div>
+                                <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;">
+                                    <i class="fas fa-video"></i> The session recording will be sent to this email within 1 hour after the session ends.
+                                </p>
+                                <button id="close-success" class="cta-button" style="width: 100%;">
+                                    <i class="fas fa-thumbs-up"></i> Got It!
+                                </button>
+                                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                                    Need help? Join our <a href="https://discord.gg/8AhqvbJy" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
+                                </p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(successModal);
+                    
+                    // Close success modal
+                    successModal.querySelector('.close-modal').addEventListener('click', () => {
+                        successModal.remove();
+                        paymentModal.style.display = 'none';
+                        resetPaymentForm();
+                    });
+                    
+                    successModal.querySelector('#close-success').addEventListener('click', () => {
+                        successModal.remove();
+                        paymentModal.style.display = 'none';
+                        resetPaymentForm();
+                    });
+                    
+                    successModal.addEventListener('click', (e) => {
+                        if(e.target === successModal) {
+                            successModal.remove();
+                            paymentModal.style.display = 'none';
+                            resetPaymentForm();
+                        }
+                    });
+                    
+                    // Log to console (in real implementation, this would be server-side)
+                    console.log(`Payment processed for ${email}. Amount: £${price}. Duration: ${duration} minutes.`);
+                    console.log('Google Meet link sent to email.');
+                    console.log('Discord server: https://discord.gg/8AhqvbJy');
+                    
+                }, 500);
+                
+            }, 2000);
+        });
+
+        // Make headings editable on double-click
+        document.addEventListener('DOMContentLoaded', () => {
+            const editableHeadings = document.querySelectorAll('.editable-section h2');
+            editableHeadings.forEach(heading => {
+                heading.addEventListener('dblclick', () => {
+                    const content = heading.textContent;
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = content;
+                    input.style.cssText = `
+                        width: 100%;
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                        color: var(--primary);
+                        border: 2px solid var(--accent);
+                        border-radius: 4px;
+                        padding: 0.5rem;
+                        font-family: inherit;
+                    `;
+                    
+                    heading.style.display = 'none';
+                    heading.parentNode.insertBefore(input, heading);
+                    
+                    input.focus();
+                    input.select();
+                    
+                    const saveEdit = () => {
+                        heading.textContent = input.value;
+                        heading.style.display = 'flex';
+                        input.remove();
+                    };
+                    
+                    input.addEventListener('blur', saveEdit);
+                    input.addEventListener('keypress', (e) => {
+                        if(e.key === 'Enter') {
+                            saveEdit();
+                        }
+                    });
+                });
+            });
+            
+            // Make content editable on double-click
+            const editableContents = document.querySelectorAll('.editable-content');
+            editableContents.forEach(content => {
+                content.addEventListener('dblclick', () => {
+                    content.contentEditable = 'true';
+                    content.style.border = '2px solid var(--accent)';
+                    content.style.backgroundColor = '#fffef0';
+                    content.focus();
+                    
+                    // Add save button
+                    const saveBtn = document.createElement('button');
+                    saveBtn.innerHTML = '<i class="fas fa-save"></i> Save';
+                    saveBtn.style.cssText = `
+                        position: absolute;
+                        right: 10px;
+                        bottom: 10px;
+                        background-color: var(--accent);
+                        color: white;
+                        border: none;
+                        padding: 0.5rem 1rem;
+                        border-radius: 4px;
+                        cursor: pointer;
+                        font-family: inherit;
+                        font-weight: 600;
+                        z-index: 10;
+                    `;
+                    
+                    content.style.position = 'relative';
+                    content.appendChild(saveBtn);
+                    
+                    saveBtn.addEventListener('click', () => {
+                        content.contentEditable = 'false';
+                        content.style.border = '1px dashed #ddd';
+                        content.style.backgroundColor = '';
+                        saveBtn.remove();
+                    });
+                    
+                    // Auto-save on clicking outside
+                    document.addEventListener('click', function autoSave(e) {
+                        if (!content.contains(e.target) && e.target !== saveBtn) {
+                            content.contentEditable = 'false';
+                            content.style.border = '1px dashed #ddd';
+                            content.style.backgroundColor = '';
+                            if (saveBtn.parentNode) {
+                                saveBtn.remove();
+                            }
+                            document.removeEventListener('click', autoSave);
+                        }
+                    });
+                });
+            });
+            
+            // Set initial active page
+            showPage('home-page');
+            updateActiveNav('home');
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Escape key closes modal
+            if(e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if(modal.style.display === 'flex') {
+                        modal.style.display = 'none';
+                        if(modal === paymentModal) {
+                            resetPaymentForm();
+                        }
+                    }
+                });
+            }
+            
+            // Ctrl+B to book session
+            if(e.ctrlKey && e.key === 'b') {
+                e.preventDefault();
+                document.getElementById('payment-modal').style.display = 'flex';
+            }
+        });
+
+        // Add smooth scrolling for subject cards
+        document.querySelectorAll('.subject-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Find the book session button and trigger click
+                const bookBtn = document.getElementById('book-session');
+                if(bookBtn) {
+                    bookBtn.click();
+                }
+            });
+        });
+
+        // Auto-scroll to top when page loads
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+        });
+    </script>
+</body>
+</html>
