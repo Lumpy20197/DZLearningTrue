@@ -4,9 +4,15 @@
 <head>
     <title>DZLearning - Group Tutoring by Top Students</title>
     <link rel="icon" type="image/x-icon" href="256Logo.png">
-
+    
+    <!-- Load Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Load Stripe.js -->
     <script src="https://js.stripe.com/v3/"></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <style>
         * {
             margin: 0;
@@ -66,9 +72,34 @@
             color: var(--accent);
         }
         
+        .logo img {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+        
         .top-nav {
             display: flex;
+        }
+        
+        .nav-links-container {
+            display: flex;
             gap: 2rem;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 600px;
         }
         
         .nav-link {
@@ -78,6 +109,7 @@
             padding: 0.5rem 1rem;
             border-radius: 4px;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
         
         .nav-link:hover {
@@ -88,6 +120,44 @@
         .nav-link.active {
             background-color: var(--primary);
             color: white;
+        }
+        
+        .nav-dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1000;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+        
+        .nav-dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+        }
+        
+        .dropdown-item:hover {
+            background-color: rgba(42, 92, 130, 0.1);
+            color: var(--primary);
+            border-left-color: var(--accent);
         }
         
         /* Main Content */
@@ -1003,18 +1073,93 @@
         }
         
         /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links-container {
+                max-width: 500px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+        
         @media (max-width: 768px) {
             .nav-container {
-                flex-direction: column;
-                gap: 1rem;
                 padding: 1rem;
             }
             
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
             .top-nav {
+                position: fixed;
+                top: 90px;
+                left: 0;
                 width: 100%;
-                justify-content: center;
-                flex-wrap: wrap;
-                gap: 0.5rem;
+                background-color: white;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                padding: 1rem;
+                display: none;
+                flex-direction: column;
+                z-index: 1000;
+            }
+            
+            .top-nav.active {
+                display: flex;
+            }
+            
+            .nav-links-container {
+                flex-direction: column;
+                gap: 0;
+                max-width: 100%;
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .nav-link::after {
+                content: '›';
+                transform: rotate(90deg);
+                transition: transform 0.3s ease;
+            }
+            
+            .nav-dropdown.active .nav-link::after {
+                transform: rotate(-90deg);
+            }
+            
+            .nav-dropdown {
+                width: 100%;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                border-radius: 0;
+                padding-left: 1rem;
+                background-color: rgba(42, 92, 130, 0.05);
+                margin-top: 0;
+            }
+            
+            .nav-dropdown:hover .dropdown-content,
+            .nav-dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .dropdown-item {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo img {
+                width: 60px;
+                height: 60px;
             }
             
             .hero {
@@ -1023,7 +1168,7 @@
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
             .hero p {
@@ -1107,11 +1252,26 @@
             .round-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .page-header {
+                padding: 2rem 1rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .timetable-session,
+            .tutor-card,
+            .feature-card,
+            .subject-card {
+                margin-bottom: 1rem;
+            }
         }
         
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .cta-button {
@@ -1128,7 +1288,7 @@
             }
             
             .page-header {
-                padding: 2rem 1rem;
+                padding: 1.5rem 1rem;
             }
         }
     </style>
@@ -1139,14 +1299,35 @@
         <div class="nav-container">
             <a href="#home" class="logo">
                 <i class="fas fa-graduation-cap"></i>
-                
-                <img src="256Logo.png" alt="DZLearning" width="80" height="80"></img>
+                <img src="256Logo.png" alt="DZLearning" width="80" height="80">
             </a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
             <nav class="top-nav">
-                <a href="#home" class="nav-link active" data-page="home">Home</a>
-                <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
-                <a href="#Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
-                <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
+                <div class="nav-links-container">
+                    <a href="#home" class="nav-link active" data-page="home">Home</a>
+                    <div class="nav-dropdown">
+                        <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
+                        <div class="dropdown-content">
+                            <a href="#gcse" class="dropdown-item" onclick="showGCSESubjectsPage(); return false;">All GCSE Subjects</a>
+                            <a href="#gcse-maths" class="dropdown-item" onclick="showGCSEMathsPage(); return false;">GCSE Maths</a>
+                            <a href="#gcse-physics" class="dropdown-item" onclick="showGCSEPhysicsPage(); return false;">GCSE Physics</a>
+                            <a href="#gcse-chemistry" class="dropdown-item" onclick="showGCSEChemistryPage(); return false;">GCSE Chemistry</a>
+                            <a href="#gcse-biology" class="dropdown-item" onclick="showGCSEBiologyPage(); return false;">GCSE Biology</a>
+                        </div>
+                    </div>
+                    <div class="nav-dropdown">
+                        <a href="#Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
+                        <div class="dropdown-content">
+                            <a href="#Olympiads" class="dropdown-item" onclick="showOlympiadsPage(); return false;">All Olympiads</a>
+                            <a href="#maths-challenge" class="dropdown-item" onclick="showMathsChallengePage(); return false;">Maths Challenges</a>
+                            <a href="#physics-olympiad" class="dropdown-item" onclick="showPhysicsOlympiadPage(); return false;">Physics Olympiad</a>
+                            <a href="#chemistry-olympiad" class="dropdown-item" onclick="showChemistryOlympiadPage(); return false;">Chemistry Olympiad</a>
+                        </div>
+                    </div>
+                    <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
+                </div>
             </nav>
         </div>
     </header>
@@ -1177,9 +1358,9 @@
             </div>
             
             <div id="about" class="section-anchor"></div>
-            <div>
+            <div class="editable-section">
                 <h2 id="about-heading"><i class="fas fa-info-circle"></i> About DZLearning</h2>
-                <div>
+                <div class="editable-content">
                     At DZLearning, we believe the best teachers are often those who recently excelled in the exact exams you're preparing for. Our tutors are top-achieving students who aced their GCSEs with straight 9s and are now studying at top universities. They understand exactly what it takes to succeed because they've done it themselves, recently!
 
                     We specialize in <strong>large group sessions</strong> where you can learn alongside peers, ask questions, and benefit from collaborative learning at just £4 per session. All sessions are <strong>recorded and sent to your email</strong> after each class, so you can rewatch and reinforce your learning anytime.
@@ -1189,7 +1370,7 @@
             </div>
             
             <div id="features" class="section-anchor"></div>
-            <div>
+            <div class="editable-section">
                 <h2 id="features-heading"><i class="fas fa-star"></i> Why Choose DZLearning?</h2>
                 <div class="features-grid">
                     <div class="feature-card">
@@ -1251,7 +1432,7 @@
         <!-- GCSE Subjects Page -->
         <section id="gcse-page" class="page">
             <div id="gcse" class="section-anchor"></div>
-            <div>
+            <div class="editable-section">
                 <h2 id="gcse-heading"><i class="fas fa-book"></i> GCSE Group Tutoring</h2>
                 <div class="group-session-badge">Large Group Sessions (20 students)</div>
                 <p>Join our group sessions for GCSE subjects where you will learn exactly how to <b>beat</b> the mark scheme from top students. All sessions are recorded and uploaded to Youtube.</p>
@@ -1351,7 +1532,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
                 <p>Our GCSE Maths group sessions are structured to maximize your learning:</p>
                 
@@ -1390,7 +1571,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
                 <p>Weekly group sessions - Choose the time that works best for you:</p>
                 
@@ -1439,7 +1620,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
                 <p>We cover all major GCSE Maths topics across Foundation and Higher tiers:</p>
                 
@@ -1537,7 +1718,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
                 <p>Our GCSE Physics sessions combine theory with practical applications:</p>
                 
@@ -1576,7 +1757,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
                 <p>Weekly group sessions - Choose the time that works best for you:</p>
                 
@@ -1615,7 +1796,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
                 <p>We cover all major GCSE Physics topics across all exam boards:</p>
                 
@@ -1713,7 +1894,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
                 <p>Our GCSE Chemistry sessions make complex concepts accessible:</p>
                 
@@ -1752,7 +1933,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
                 <p>Weekly group sessions - Choose the time that works best for you:</p>
                 
@@ -1791,7 +1972,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
                 <p>We cover all major GCSE Chemistry topics across all exam boards:</p>
                 
@@ -1889,7 +2070,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
                 <p>Our GCSE Biology sessions make complex systems understandable:</p>
                 
@@ -1928,7 +2109,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
                 <p>Weekly group sessions - Choose the time that works best for you:</p>
                 
@@ -1967,7 +2148,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
                 <p>We cover all major GCSE Biology topics across all exam boards:</p>
                 
@@ -2065,7 +2246,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-trophy"></i> Challenge Levels</h2>
                 <p>We offer preparation for all three levels of UK Mathematics Challenges:</p>
                 
@@ -2113,7 +2294,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Session Structure</h2>
                 <p>Our challenge preparation sessions are designed to build problem-solving skills:</p>
                 
@@ -2152,7 +2333,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
                 <p>Weekly preparation sessions for each challenge level:</p>
                 
@@ -2260,7 +2441,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> Session Structure</h2>
                 <p>Our Physics Olympiad sessions focus on advanced problem-solving:</p>
                 
@@ -2299,7 +2480,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
                 <p>Weekly Olympiad preparation sessions:</p>
                 
@@ -2407,7 +2588,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-chalkboard-teacher"></i> Session Structure</h2>
                 <p>Our Chemistry Olympiad sessions focus on advanced chemical concepts:</p>
                 
@@ -2446,7 +2627,7 @@
                 </div>
             </div>
             
-            <div>
+            <div class="editable-section">
                 <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
                 <p>Weekly Olympiad preparation sessions:</p>
                 
@@ -2494,10 +2675,95 @@
             </div>
         </section>
 
+        <!-- Olympiads Page -->
+        <section id="Olympiads-page" class="page">
+            <div id="Olympiads" class="section-anchor"></div>
+            <div class="editable-section">
+                <h2 id="Olympiads-heading"><i class="fas fa-trophy"></i> Olympiad Group Sessions</h2>
+                <div class="group-session-badge">Interactive Group Learning</div>
+                <p>10 people group sessions from top achievers for Physics, Chemistry and UKMT Olympiads to help you achieve Gold for your Personal Statement.</p>
+                <div class="subjects-grid">    
+                    <div class="subject-card" data-super="maths-challenge" id="maths-challenge-card">
+                        <div class="subject-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>UKMT Maths Challenge (SMC, IMC, JMC)</h3>
+                            <p>Group sessions for Junior, Intermediate and Senior Mathematics Challenges. Past paper practice and strategy sessions from consistent Gold achievers and Round 2 competitors.</p>
+                            <small></small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-super="physics-olympiad" id="physics-olympiad-card">
+                        <div class="subject-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Physics Olympiad (BPho)</h3>
+                            <p>Group sessions thoroughly covering BPho style questions and techniques. Preparation for BPhO Y12 and Y13.</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="subject-card" data-super="chemistry-challenge" id="chemistry-olympiad-card">
+                        <div class="subject-icon">
+                            <i class="fas fa-vial"></i>
+                        </div>
+                        <div class="subject-content">
+                            <h3>Chemistry Olympiad (UKChO)</h3>
+                            <p>Group sessions for UK Chemistry Olympiad with focus on Organic Synthesis and Analysis.</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="recorded-feature">
+                    <div class="recorded-icon">
+                        <i class="fas fa-share-square"></i>
+                    </div>
+                    <div>
+                        <h3>🔗 Connect with Me on Social Media</h3>
+                        <p>Follow my learning journey and get daily study tips! On Instagram (@dylanzhang.09) I share study routines and exam advice. On TikTok (@dylanzhang.009) you'll find quick revision tips and behind-the-scenes of our tutoring sessions. I often share exclusive content about upcoming group sessions and competition preparation!</p>
+                        <div class="social-links" style="margin-top: 1rem; justify-content: flex-start;">
+                            <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-instagram"></i>
+                                <span>@dylanzhang.09</span>
+                            </a>
+                            <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-tiktok"></i>
+                                <span>@dylanzhang.009</span>
+                            </a>
+                            <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
+                                <i class="fab fa-discord"></i>
+                                <span>Join Discord</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-trophy"></i> Olympiad Preparation Hub</h2>
+                <p>Join our Discord server dedicated to Olympiad preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i>
+                    Join Olympiad Preparation Server
+                </a>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/ApaeykHhAe</p>
+            </div>
+        </section>
+
         <!-- Our Tutors Page -->
         <section id="tutors-page" class="page">
             <div id="tutors" class="section-anchor"></div>
-            <div>
+            <div class="editable-section">
                 <h2 id="tutors-heading"><i class="fas fa-users"></i> Our Top Student Tutors</h2>
                 <p>Learn from highly accomplished students who recently excelled in their exams:</p>
                 <div class="tutors-grid">
@@ -2582,91 +2848,6 @@
                     <i class="fab fa-discord"></i>
                     Join Tutor Q&A Channel
                 </a>
-            </div>
-        </section>
-
-        <!-- Olympiads Page -->
-        <section id="Olympiads-page" class="page">
-            <div id="Olympiads" class="section-anchor"></div>
-            <div>
-                <h2 id="Olympiads-heading"><i class="fas fa-trophy"></i> Olympiad Group Sessions</h2>
-                <div class="group-session-badge">Interactive Group Learning</div>
-                <p>10 people group sessions from top achievers for Physics, Chemistry and UKMT Olympiads to help you achieve Gold for your Personal Statement.</p>
-                <div class="subjects-grid">    
-                    <div class="subject-card" data-super="maths-challenge" id="maths-challenge-card">
-                        <div class="subject-icon">
-                            <i class="fas fa-medal"></i>
-                        </div>
-                        <div class="subject-content">
-                            <h3>UKMT Maths Challenge (SMC, IMC, JMC)</h3>
-                            <p>Group sessions for Junior, Intermediate and Senior Mathematics Challenges. Past paper practice and strategy sessions from consistent Gold achievers and Round 2 competitors.</p>
-                            <small></small>
-                            <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="subject-card" data-super="physics-olympiad" id="physics-olympiad-card">
-                        <div class="subject-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="subject-content">
-                            <h3>Physics Olympiad (BPho)</h3>
-                            <p>Group sessions thoroughly covering BPho style questions and techniques. Preparation for BPhO Y12 and Y13.</p>
-                            <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="subject-card" data-super="chemistry-challenge" id="chemistry-olympiad-card">
-                        <div class="subject-icon">
-                            <i class="fas fa-vial"></i>
-                        </div>
-                        <div class="subject-content">
-                            <h3>Chemistry Olympiad (UKChO)</h3>
-                            <p>Group sessions for UK Chemistry Olympiad with focus on Organic Synthesis and Analysis.</p>
-                            <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="recorded-feature">
-                    <div class="recorded-icon">
-                        <i class="fas fa-share-square"></i>
-                    </div>
-                    <div>
-                        <h3>🔗 Connect with Me on Social Media</h3>
-                        <p>Follow my learning journey and get daily study tips! On Instagram (@dylanzhang.09) I share study routines and exam advice. On TikTok (@dylanzhang.009) you'll find quick revision tips and behind-the-scenes of our tutoring sessions. I often share exclusive content about upcoming group sessions and competition preparation!</p>
-                        <div class="social-links" style="margin-top: 1rem; justify-content: flex-start;">
-                            <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" style="padding: 0.5rem 1rem;">
-                                <i class="fab fa-instagram"></i>
-                                <span>@dylanzhang.09</span>
-                            </a>
-                            <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" style="padding: 0.5rem 1rem;">
-                                <i class="fab fa-tiktok"></i>
-                                <span>@dylanzhang.009</span>
-                            </a>
-                            <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
-                                <i class="fab fa-discord"></i>
-                                <span>Join Discord</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="discord-community">
-                <h2><i class="fas fa-trophy"></i> Olympiad Preparation Hub</h2>
-                <p>Join our Discord server dedicated to Olympiad preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
-                    <i class="fab fa-discord"></i>
-                    Join Olympiad Preparation Server
-                </a>
-                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/ApaeykHhAe</p>
             </div>
         </section>
 
@@ -2850,6 +3031,57 @@
             updateActiveNav('Olympiads');
         }
 
+        // Mobile menu functionality
+        function setupMobileMenu() {
+            const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+            const topNav = document.querySelector('.top-nav');
+            const navDropdowns = document.querySelectorAll('.nav-dropdown');
+            
+            if (mobileMenuToggle && topNav) {
+                mobileMenuToggle.addEventListener('click', () => {
+                    topNav.classList.toggle('active');
+                    mobileMenuToggle.innerHTML = topNav.classList.contains('active') ? 
+                        '<i class="fas fa-times"></i>' : 
+                        '<i class="fas fa-bars"></i>';
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.nav-container') && topNav.classList.contains('active')) {
+                        topNav.classList.remove('active');
+                        mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                });
+            }
+            
+            // Mobile dropdown functionality
+            navDropdowns.forEach(dropdown => {
+                const link = dropdown.querySelector('.nav-link');
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                    }
+                });
+            });
+            
+            // Close mobile menu when selecting a page
+            document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        const topNav = document.querySelector('.top-nav');
+                        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+                        if (topNav) {
+                            topNav.classList.remove('active');
+                        }
+                        if (mobileMenuToggle) {
+                            mobileMenuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        }
+                    }
+                });
+            });
+        }
+
         // Navigation between pages
         document.querySelectorAll('.nav-link, .footer-section a, .logo').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -2941,6 +3173,9 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Setup mobile menu
+            setupMobileMenu();
+            
             // GCSE Subject Cards
             document.getElementById('gcse-maths-card').addEventListener('click', function(e) {
                 if (!e.target.classList.contains('cta-button')) {
