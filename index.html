@@ -96,10 +96,21 @@
         
         .nav-links-container {
             display: flex;
-            gap: 2rem;
+            gap: 1rem;
             justify-content: space-between;
             width: 100%;
             max-width: 600px;
+        }
+        
+        .nav-links-container > * {
+            flex: 1;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .nav-dropdown {
+            position: relative;
+            flex: 1;
         }
         
         .nav-link {
@@ -110,6 +121,9 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             white-space: nowrap;
+            display: block;
+            text-align: center;
+            width: 100%;
         }
         
         .nav-link:hover {
@@ -120,10 +134,6 @@
         .nav-link.active {
             background-color: var(--primary);
             color: white;
-        }
-        
-        .nav-dropdown {
-            position: relative;
         }
         
         .dropdown-content {
@@ -1110,37 +1120,32 @@
             }
             
             .nav-links-container {
-    display: flex;
-    gap: 1rem; /* Reduced gap for better distribution */
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-}
-
-/* Add this to ensure nav items take equal space */
-.nav-links-container > * {
-    flex: 1;
-    text-align: center;
-    min-width: 80px; /* Minimum width for each item */
-}
-
-.nav-dropdown {
-    position: relative;
-    flex: 1;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    display: block;
-    text-align: center;
-    width: 100%;
-}
+                flex-direction: column;
+                gap: 0;
+                max-width: 100%;
+            }
+            
+            .nav-links-container > * {
+                flex: none;
+                text-align: left;
+                min-width: auto;
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
+            
+            .nav-link::after {
+                content: '›';
+                transform: rotate(90deg);
+                transition: transform 0.3s ease;
+            }
             
             .nav-dropdown.active .nav-link::after {
                 transform: rotate(-90deg);
@@ -1148,6 +1153,7 @@
             
             .nav-dropdown {
                 width: 100%;
+                flex: none;
             }
             
             .dropdown-content {
@@ -1318,31 +1324,33 @@
             </button>
             <nav class="top-nav">
                 <div class="nav-links-container">
-    <a href="#home" class="nav-link active" data-page="home">Home</a>
-    
-    <div class="nav-dropdown">
-        <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
-        <div class="dropdown-content">
-            <a href="#gcse" class="dropdown-item" onclick="showGCSESubjectsPage(); return false;">All GCSE Subjects</a>
-            <a href="#gcse-maths" class="dropdown-item" onclick="showGCSEMathsPage(); return false;">GCSE Maths</a>
-            <a href="#gcse-physics" class="dropdown-item" onclick="showGCSEPhysicsPage(); return false;">GCSE Physics</a>
-            <a href="#gcse-chemistry" class="dropdown-item" onclick="showGCSEChemistryPage(); return false;">GCSE Chemistry</a>
-            <a href="#gcse-biology" class="dropdown-item" onclick="showGCSEBiologyPage(); return false;">GCSE Biology</a>
+                    <a href="#home" class="nav-link active" data-page="home">Home</a>
+                    
+                    <div class="nav-dropdown">
+                        <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
+                        <div class="dropdown-content">
+                            <a href="#gcse" class="dropdown-item" onclick="showGCSESubjectsPage(); return false;">All GCSE Subjects</a>
+                            <a href="#gcse-maths" class="dropdown-item" onclick="showGCSEMathsPage(); return false;">GCSE Maths</a>
+                            <a href="#gcse-physics" class="dropdown-item" onclick="showGCSEPhysicsPage(); return false;">GCSE Physics</a>
+                            <a href="#gcse-chemistry" class="dropdown-item" onclick="showGCSEChemistryPage(); return false;">GCSE Chemistry</a>
+                            <a href="#gcse-biology" class="dropdown-item" onclick="showGCSEBiologyPage(); return false;">GCSE Biology</a>
+                        </div>
+                    </div>
+                    
+                    <div class="nav-dropdown">
+                        <a href="#Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
+                        <div class="dropdown-content">
+                            <a href="#Olympiads" class="dropdown-item" onclick="showOlympiadsPage(); return false;">All Olympiads</a>
+                            <a href="#maths-challenge" class="dropdown-item" onclick="showMathsChallengePage(); return false;">Maths Challenges</a>
+                            <a href="#physics-olympiad" class="dropdown-item" onclick="showPhysicsOlympiadPage(); return false;">Physics Olympiad</a>
+                            <a href="#chemistry-olympiad" class="dropdown-item" onclick="showChemistryOlympiadPage(); return false;">Chemistry Olympiad</a>
+                        </div>
+                    </div>
+                    
+                    <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
+                </div>
+            </nav>
         </div>
-    </div>
-    
-    <div class="nav-dropdown">
-        <a href="#Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
-        <div class="dropdown-content">
-            <a href="#Olympiads" class="dropdown-item" onclick="showOlympiadsPage(); return false;">All Olympiads</a>
-            <a href="#maths-challenge" class="dropdown-item" onclick="showMathsChallengePage(); return false;">Maths Challenges</a>
-            <a href="#physics-olympiad" class="dropdown-item" onclick="showPhysicsOlympiadPage(); return false;">Physics Olympiad</a>
-            <a href="#chemistry-olympiad" class="dropdown-item" onclick="showChemistryOlympiadPage(); return false;">Chemistry Olympiad</a>
-        </div>
-    </div>
-    
-    <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
-</div>
     </header>
 
     <!-- Main Content -->
@@ -2705,7 +2713,7 @@
                             <p>Group sessions for Junior, Intermediate and Senior Mathematics Challenges. Past paper practice and strategy sessions from consistent Gold achievers and Round 2 competitors.</p>
                             <small></small>
                             <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
                             </div>
                         </div>
                     </div>
@@ -2718,7 +2726,7 @@
                             <h3>Physics Olympiad (BPho)</h3>
                             <p>Group sessions thoroughly covering BPho style questions and techniques. Preparation for BPhO Y12 and Y13.</p>
                             <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
                             </div>
                         </div>
                     </div>
@@ -2731,7 +2739,7 @@
                             <h3>Chemistry Olympiad (UKChO)</h3>
                             <p>Group sessions for UK Chemistry Olympiad with focus on Organic Synthesis and Analysis.</p>
                             <div style="margin-top: 1rem;">
-                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Session Details</button>
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
                             </div>
                         </div>
                     </div>
