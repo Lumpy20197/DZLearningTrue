@@ -551,7 +551,7 @@
             height: 24px;
             border-radius: 50%;
             display: flex;
-                align-items: center;
+            align-items: center;
             justify-content: center;
             font-weight: bold;
         }
@@ -684,6 +684,201 @@
             transform: translateY(-2px);
         }
         
+        /* Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .back-button:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+        
+        /* Lesson Timetable */
+        .timetable {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .timetable-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .timetable-session {
+            background-color: rgba(42, 92, 130, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .session-time {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .session-date {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .session-topic {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .session-details {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Curriculum Overview */
+        .curriculum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .curriculum-topic {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+        }
+        
+        .topic-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        
+        /* Lesson Structure */
+        .structure-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .structure-step {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid transparent;
+        }
+        
+        .structure-step:nth-child(1) { border-left-color: #2A5C82; }
+        .structure-step:nth-child(2) { border-left-color: #3A7CA5; }
+        .structure-step:nth-child(3) { border-left-color: #F9A826; }
+        .structure-step:nth-child(4) { border-left-color: #28a745; }
+        
+        .step-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            min-width: 50px;
+        }
+        
+        /* Breadcrumb Navigation */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb-item {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .breadcrumb-item:hover {
+            color: var(--primary);
+        }
+        
+        .breadcrumb-separator {
+            color: var(--gray);
+        }
+        
+        .breadcrumb-current {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .subject-icon-large {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        /* Booking Card */
+        .booking-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
@@ -759,6 +954,24 @@
                 padding: 2rem 1rem;
                 margin: 2rem 0;
             }
+            
+            .timetable-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .curriculum-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .structure-step {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .step-number {
+                min-width: 40px;
+                text-align: center;
+            }
         }
         
         @media (max-width: 480px) {
@@ -777,6 +990,10 @@
             
             .modal-body {
                 padding: 1.5rem;
+            }
+            
+            .page-header {
+                padding: 2rem 1rem;
             }
         }
     </style>
@@ -806,8 +1023,7 @@
             <div class="hero">
                 <h1>Group Tutoring by Top-Achieving Students</h1>
                 <p>Learn from highly academic students who recently aced their exams. Get relatable, effective tutoring in large groups at an affordable price.</p>
-                <a href="https://buy.stripe.com/eVq00d8NCdRGdPv53S8so00"><button class="cta-button" id="book-now">Book Your Group Session Now</button></a>
-                
+                <button class="cta-button" id="book-now">Book Your Group Session Now</button>
                 
                 <div class="social-links">
                     <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram">
@@ -818,7 +1034,7 @@
                         <i class="fab fa-tiktok"></i>
                         <span>Follow @dylanzhang.009</span>
                     </a>
-                    <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="social-link discord">
+                    <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="social-link discord">
                         <i class="fab fa-discord"></i>
                         <span>Join Discord Server</span>
                     </a>
@@ -889,11 +1105,11 @@
             <div class="discord-community">
                 <h2><i class="fab fa-discord"></i> Join Our Study Community</h2>
                 <p>Connect with other students, share study resources, ask questions, and get exclusive updates about upcoming group sessions!</p>
-                <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
                     <i class="fab fa-discord"></i>
                     Join Discord Server
                 </a>
-                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/BfHtYseAbR</p>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/BfHtYseAbRy</p>
             </div>
         </section>
 
@@ -905,7 +1121,7 @@
                 <div class="group-session-badge">Large Group Sessions (10-20 students)</div>
                 <p>Join our interactive group sessions for GCSE subjects. All sessions are recorded and sent to your email.</p>
                 <div class="subjects-grid">
-                    <div class="subject-card" data-subject="maths">
+                    <div class="subject-card" data-subject="maths" id="gcse-maths-card">
                         <div class="subject-icon">
                             <i class="fas fa-calculator"></i>
                         </div>
@@ -913,6 +1129,9 @@
                             <h3>Mathematics</h3>
                             <p>Group sessions covering all GCSE Maths topics. Learn from a student who achieved Grade 9 and now studies Maths at Cambridge.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
+                            </div>
                         </div>
                     </div>
                     
@@ -954,9 +1173,195 @@
             <div class="discord-community">
                 <h2><i class="fas fa-users"></i> Study Together on Discord</h2>
                 <p>Join our Discord server to form study groups, share resources, and get help from peers preparing for the same GCSE subjects!</p>
-                <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
                     <i class="fab fa-discord"></i>
                     Join GCSE Study Group
+                </a>
+            </div>
+        </section>
+
+        <!-- NEW: GCSE Maths Detail Page -->
+        <section id="gcse-maths-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#gcse" class="breadcrumb-item" data-page="gcse">
+                    <i class="fas fa-book"></i> GCSE Subjects
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-calculator"></i> GCSE Mathematics
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-gcse">
+                <i class="fas fa-arrow-left"></i> Back to GCSE Subjects
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h1>GCSE Mathematics Group Tutoring</h1>
+                <p>Master all GCSE Maths topics with our structured group sessions</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Large Group Sessions • £4 per session • Recordings Provided
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
+                <p>Our GCSE Maths group sessions are structured to maximize your learning:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Topic Introduction (10 mins)</h3>
+                            <p>Clear explanation of the topic with visual examples and real-world applications</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Worked Examples (15 mins)</h3>
+                            <p>Step-by-step solutions to exam-style questions, demonstrating techniques and common pitfalls</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Interactive Practice (20 mins)</h3>
+                            <p>Group problem-solving with tutor guidance. Ask questions and learn from peers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Q&A and Summary (15 mins)</h3>
+                            <p>Address remaining questions, review key concepts, and provide study resources</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
+                <p>Weekly group sessions - Choose the time that works best for you:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:00 PM - 6:00 PM</div>
+                            <div class="session-date">📅 Every Monday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Algebra & Equations</div>
+                            <div class="session-details">Week 1: Linear equations • Week 2: Quadratic equations • Week 3: Simultaneous equations</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:30 PM - 7:30 PM</div>
+                            <div class="session-date">📅 Every Wednesday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Geometry & Trigonometry</div>
+                            <div class="session-details">Week 1: Angles & shapes • Week 2: Pythagoras & trigonometry • Week 3: Circle theorems</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 4:30 PM - 5:30 PM</div>
+                            <div class="session-date">📅 Every Friday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Statistics & Probability</div>
+                            <div class="session-details">Week 1: Data handling • Week 2: Probability basics • Week 3: Advanced probability</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 2:00 PM - 3:00 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Number & Ratio</div>
+                            <div class="session-details">Week 1: Fractions & percentages • Week 2: Ratio & proportion • Week 3: Surds & indices</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background-color: rgba(42, 92, 130, 0.05); border-radius: 8px;">
+                        <h4><i class="fas fa-info-circle"></i> Important Notes:</h4>
+                        <ul style="padding-left: 1.5rem; margin-top: 0.5rem;">
+                            <li>All sessions are recorded and sent to your email within 1 hour</li>
+                            <li>Google Meet link provided after booking</li>
+                            <li>You can attend multiple sessions per week</li>
+                            <li>No long-term commitment - book session by session</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
+                <p>We cover all major GCSE Maths topics across Foundation and Higher tiers:</p>
+                
+                <div class="curriculum-grid">
+                    <div class="curriculum-topic">
+                        <div class="topic-number">1</div>
+                        <h4>Number</h4>
+                        <p>Fractions, percentages, ratio, indices, surds</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">2</div>
+                        <h4>Algebra</h4>
+                        <p>Equations, sequences, graphs, inequalities</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">3</div>
+                        <h4>Geometry</h4>
+                        <p>Angles, shapes, vectors, constructions</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">4</div>
+                        <h4>Trigonometry</h4>
+                        <p>Pythagoras, SOHCAHTOA, sine/cosine rules</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">5</div>
+                        <h4>Probability</h4>
+                        <p>Basic probability, tree diagrams, combined events</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">6</div>
+                        <h4>Statistics</h4>
+                        <p>Data handling, averages, graphs, sampling</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-calendar-check"></i> Ready to Join?</h2>
+                <p>Book your spot in our next GCSE Maths group session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute session</div>
+                </div>
+                <button class="cta-button" id="book-maths-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book GCSE Maths Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🎯 Exam focus • 👥 10-20 students per group
+                </p>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
+                <p>Join our Discord server to ask about the GCSE Maths curriculum, schedule, or anything else!</p>
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i> Join Maths Discussion
                 </a>
             </div>
         </section>
@@ -1045,7 +1450,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-comments"></i> Connect with Tutors on Discord</h2>
                 <p>Join our Discord server to ask questions directly to our tutors, participate in Q&A sessions, and connect with other students!</p>
-                <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
                     <i class="fab fa-discord"></i>
                     Join Tutor Q&A Channel
                 </a>
@@ -1110,7 +1515,7 @@
                                 <i class="fab fa-tiktok"></i>
                                 <span>@dylanzhang.009</span>
                             </a>
-                            <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
+                            <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
                                 <i class="fab fa-discord"></i>
                                 <span>Join Discord</span>
                             </a>
@@ -1122,11 +1527,11 @@
             <div class="discord-community">
                 <h2><i class="fas fa-trophy"></i> Competition Preparation Hub</h2>
                 <p>Join our Discord server dedicated to competition preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
-                <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
                     <i class="fab fa-discord"></i>
                     Join Competition Prep Server
                 </a>
-                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/BfHtYseAbR</p>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">https://discord.com/invite/BfHtYseAbRy</p>
             </div>
         </section>
 
@@ -1163,27 +1568,6 @@
             </div>
           </div>
         </div>
-        
-        <script>
-          // Pay button redirect
-          document.getElementById('pay-button').addEventListener('click', () => {
-            const email = document.getElementById('student-email').value.trim();
-        
-            if (!email) {
-              alert('Please enter your email first.');
-              return;
-            }
-        
-            // Redirect to Stripe Payment Link
-            window.location.href = 'https://buy.stripe.com/eVq00d8NCdRGdPv53S8so00';
-          });
-        
-          // Close modal functionality (optional)
-          const modal = document.getElementById('payment-modal');
-          document.querySelector('.close-modal').addEventListener('click', () => {
-            modal.style.display = 'none';
-          });
-        </script>
 
         <!-- Success Modal -->
         <div id="success-modal" class="modal">
@@ -1214,7 +1598,7 @@
                         <i class="fas fa-thumbs-up"></i> Got It!
                     </button>
                     <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
-                        Need help? Join our <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
+                        Need help? Join our <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
                     </p>
                 </div>
             </div>
@@ -1258,7 +1642,7 @@
             
             <div class="footer-section">
                 <h3>Join Our Community</h3>
-                <a href="https://discord.com/invite/BfHtYseAbR" target="_blank" class="footer-discord-button">
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="footer-discord-button">
                     <i class="fab fa-discord"></i>
                     Join Discord Server
                 </a>
@@ -1272,6 +1656,20 @@
         const stripe = Stripe('pk_test_51Sibrp9t0PTDZrecW1oLxSDZRTAsEmgp7xEbepI2SKhaS1WmOkJs2bTiwKoI3VjgQDFrhIPZ2CoS9Aj58iy2RHXW00asjJlX4C');
         let elements;
         let currentEmail = '';
+
+        // Function to show GCSE Maths detail page
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // Function to go back to GCSE page
+        function showGCSESubjectsPage() {
+            showPage('gcse-page');
+            updateActiveNav('gcse');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
 
         // Navigation between pages with smooth scrolling to sections
         document.querySelectorAll('.nav-link, .footer-section a, .logo').forEach(link => {
@@ -1317,8 +1715,12 @@
                 // Handle regular navigation links
                 const page = this.dataset.page;
                 if(page) {
-                    showPage(`${page}-page`);
-                    updateActiveNav(page);
+                    if (page === 'gcse') {
+                        showGCSESubjectsPage();
+                    } else {
+                        showPage(`${page}-page`);
+                        updateActiveNav(page);
+                    }
                     
                     // Scroll to top when switching pages
                     window.scrollTo({top: 0, behavior: 'smooth'});
@@ -1355,20 +1757,17 @@
         const successModal = document.getElementById('success-modal');
         const closeModal = document.querySelector('.close-modal');
         const closeSuccessModal = document.querySelector('.close-success-modal');
-        const processPaymentBtn = document.getElementById('stripe-submit-button');
-        const studentEmailInput = document.getElementById('student-email');
+        const processPaymentBtn = document.getElementById('pay-button');
         const successEmailElement = document.getElementById('success-email');
 
         // Show payment modal
         function showPaymentModal() {
             paymentModal.style.display = 'flex';
-            studentEmailInput.focus();
         }
 
         // Close payment modal
         closeModal.addEventListener('click', () => {
             paymentModal.style.display = 'none';
-            resetPaymentForm();
         });
 
         // Close success modal
@@ -1385,26 +1784,15 @@
             modal.addEventListener('click', (e) => {
                 if(e.target === modal) {
                     modal.style.display = 'none';
-                    if(modal === paymentModal) {
-                        resetPaymentForm();
-                    }
                 }
             });
         });
 
-        // Reset payment form
-        function resetPaymentForm() {
-            studentEmailInput.value = '';
-            processPaymentBtn.disabled = false;
-            processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
-            document.getElementById('stripe-error-message').style.display = 'none';
-            document.getElementById('stripe-error-message').textContent = '';
-            
-            // Clear Stripe Elements if they exist
-            if(elements) {
-                elements.getElement('payment').clear();
-            }
-        }
+        // Pay button redirect
+        document.getElementById('pay-button').addEventListener('click', () => {
+            // Redirect to Stripe Payment Link
+            window.location.href = 'https://buy.stripe.com/eVq00d8NCdRGdPv53S8so00';
+        });
 
         // Email validation function
         function isValidEmail(email) {
@@ -1412,173 +1800,52 @@
             return emailRegex.test(email);
         }
 
-        // Show error message
-        function showError(message) {
-            const errorElement = document.getElementById('stripe-error-message');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-        }
-
-        // Hide error message
-        function hideError() {
-            const errorElement = document.getElementById('stripe-error-message');
-            errorElement.style.display = 'none';
-        }
-
         // Show success modal
         function showSuccess(email) {
             paymentModal.style.display = 'none';
             successEmailElement.textContent = email;
             successModal.style.display = 'flex';
-            resetPaymentForm();
         }
 
-        // Initialize Stripe payment
-        async function initializeStripePayment() {
-            const email = studentEmailInput.value.trim();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add click handler for GCSE Maths card
+            document.getElementById('gcse-maths-card').addEventListener('click', function(e) {
+                // Don't trigger if clicking the button inside the card
+                if (!e.target.classList.contains('cta-button')) {
+                    showGCSEMathsPage();
+                }
+            });
             
-            if(!email) {
-                alert('Please enter your email address first.');
-                studentEmailInput.focus();
-                return;
-            }
-            
-            if(!isValidEmail(email)) {
-                alert('Please enter a valid email address.');
-                studentEmailInput.focus();
-                return;
-            }
-            
-            currentEmail = email;
-            
-            // Show loading state
-            processPaymentBtn.disabled = true;
-            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Setting up payment...';
-            
-            try {
-                // CALL YOUR BACKEND
-                const response = await fetch('http://localhost:3000/create-payment-intent', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email })
+            // Add click handler for "View Schedule & Details" button
+            document.querySelectorAll('#gcse-maths-card .cta-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent card click event
+                    showGCSEMathsPage();
                 });
-                
-                const data = await response.json();
-                
-                // Configure Stripe Elements
-                elements = stripe.elements({
-                    clientSecret: data.clientSecret,
-                    appearance: {
-                        theme: 'stripe',
-                        variables: {
-                            colorPrimary: '#2A5C82',
-                            colorBackground: '#F8F9FA',
-                            colorText: '#212529',
-                            colorDanger: '#dc3545',
-                            fontFamily: '"Segoe UI", system-ui, sans-serif',
-                            borderRadius: '8px',
-                        }
+            });
+            
+            // Add click handler for back button
+            document.getElementById('back-to-gcse').addEventListener('click', showGCSESubjectsPage);
+            
+            // Add click handler for book maths session button
+            document.getElementById('book-maths-session').addEventListener('click', showPaymentModal);
+            
+            // Update breadcrumb navigation
+            document.querySelectorAll('.breadcrumb-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page === 'gcse') {
+                        showGCSESubjectsPage();
+                    } else if (page === 'home') {
+                        showPage('home-page');
+                        updateActiveNav('home');
+                        window.scrollTo({top: 0, behavior: 'smooth'});
                     }
                 });
-                
-                // Create and mount the Payment Element
-                const paymentElement = elements.create('payment');
-                paymentElement.mount('#stripe-payment-element');
-                
-                // Enable submit button
-                processPaymentBtn.disabled = false;
-                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
-                
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Failed to initialize payment. Please try again.');
-                processPaymentBtn.disabled = false;
-                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
-            }
-        }
-
-        // Handle form submission - REAL PAYMENT
-        processPaymentBtn.addEventListener('click', async (e) => {
-            e.preventDefault();
+            });
             
-            const email = studentEmailInput.value.trim();
-            
-            if(!email) {
-                showError('Please enter your email address.');
-                return;
-            }
-            
-            if(!isValidEmail(email)) {
-                showError('Please enter a valid email address.');
-                return;
-            }
-            
-            // Check if Stripe is initialized
-            if(!elements) {
-                await initializeStripePayment();
-                return;
-            }
-            
-            // Show processing state
-            processPaymentBtn.disabled = true;
-            processPaymentBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            hideError();
-            
-            try {
-                // REAL STRIPE PAYMENT
-                const { error, paymentIntent } = await stripe.confirmPayment({
-                    elements,
-                    confirmParams: {
-                        return_url: window.location.origin,
-                    },
-                    redirect: 'if_required'
-                });
-                
-                if (error) {
-                    showError(error.message);
-                    processPaymentBtn.disabled = false;
-                    processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
-                } else {
-                    // Payment succeeded - notify backend
-                    await fetch('http://localhost:3000/confirm-booking', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ 
-                            email: email,
-                            payment_id: paymentIntent.id 
-                        })
-                    });
-                    
-                    showSuccess(email);
-                    
-                    console.log('Payment successful!');
-                    console.log('Payment ID:', paymentIntent.id);
-                    console.log('Email sent to:', email);
-                    
-                }
-                
-            } catch (error) {
-                console.error('Payment error:', error);
-                showError('Payment failed. Please try again.');
-                processPaymentBtn.disabled = false;
-                processPaymentBtn.innerHTML = '<i class="fas fa-lock"></i> Pay £4 and Join Group Session';
-            }
-        });
-
-        // Initialize payment when email is entered and user clicks in payment element area
-        studentEmailInput.addEventListener('blur', async () => {
-            const email = studentEmailInput.value.trim();
-            if(email && isValidEmail(email) && !elements) {
-                await initializeStripePayment();
-            }
-        });
-
-        // Make headings editable on double-click
-        document.addEventListener('DOMContentLoaded', () => {
+            // Make headings editable on double-click
             const editableHeadings = document.querySelectorAll('.editable-section h2');
             editableHeadings.forEach(heading => {
                 heading.addEventListener('dblclick', () => {
@@ -1678,13 +1945,21 @@
             window.scrollTo(0, 0);
         });
 
+        // Add click handler for other subject cards to open booking modal
+        document.querySelectorAll('.subject-card').forEach(card => {
+            if (card.id !== 'gcse-maths-card') {
+                card.addEventListener('click', function() {
+                    showPaymentModal();
+                });
+            }
+        });
+
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
             // Escape key closes modals
             if(e.key === 'Escape') {
                 if(paymentModal.style.display === 'flex') {
                     paymentModal.style.display = 'none';
-                    resetPaymentForm();
                 }
                 if(successModal.style.display === 'flex') {
                     successModal.style.display = 'none';
@@ -1696,13 +1971,6 @@
                 e.preventDefault();
                 showPaymentModal();
             }
-        });
-
-        // Add click handler for subject cards to open booking modal
-        document.querySelectorAll('.subject-card').forEach(card => {
-            card.addEventListener('click', function() {
-                showPaymentModal();
-            });
         });
     </script>
 </body>
