@@ -1129,45 +1129,63 @@
             </div>
         </section>
 
-        <!-- REAL Payment Modal with Stripe Integration -->
+        <!-- Payment Modal -->
         <div id="payment-modal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 style="margin: 0; font-size: 1.5rem;">Book Your Group Tutoring Session</h2>
-                    <button class="close-modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <p style="margin-bottom: 1.5rem; color: var(--gray);">Join our large group session (10-20 students) and receive the recording via email:</p>
-                    
-                    <div class="payment-option selected">
-                        <div class="payment-price">£4</div>
-                        <div class="payment-duration">60-minute group session</div>
-                        <p><strong>Large Group Learning (10-20 students)</strong></p>
-                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Recording sent to your email after session</p>
-                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Interactive group discussion</p>
-                        <p style="margin: 0.5rem 0; color: var(--success);">✓ Q&A with top student tutor</p>
-                    </div>
-                    
-                    <input type="email" id="student-email" placeholder="Enter your email address for session recording" required>
-                    
-                    <!-- Stripe Payment Element will be inserted here -->
-                    <div id="stripe-payment-element"></div>
-                    
-                    <!-- Error message display -->
-                    <div id="stripe-error-message"></div>
-                    
-                    <button id="stripe-submit-button" class="payment-button">
-                        <i class="fas fa-lock"></i>
-                        Pay £4 and Join Group Session
-                    </button>
-                    
-                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray); text-align: center; line-height: 1.5;">
-                        <i class="fas fa-video"></i> Session recording will be sent to your email within 1 hour<br>
-                        <i class="fas fa-users"></i> Google Meet link will be emailed immediately after payment
-                    </p>
-                </div>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 style="margin: 0; font-size: 1.5rem;">Book Your Group Tutoring Session</h2>
+              <button class="close-modal">&times;</button>
             </div>
+            <div class="modal-body">
+              <p style="margin-bottom: 1.5rem; color: var(--gray);">
+                Join our large group session (10-20 students) and receive the recording via email:
+              </p>
+        
+              <div class="payment-option selected">
+                <div class="payment-price">£4</div>
+                <div class="payment-duration">60-minute group session</div>
+                <p><strong>Large Group Learning (10-20 students)</strong></p>
+                <p style="margin: 0.5rem 0; color: var(--success);">✓ Recording sent to your email after session</p>
+                <p style="margin: 0.5rem 0; color: var(--success);">✓ Interactive group discussion</p>
+                <p style="margin: 0.5rem 0; color: var(--success);">✓ Q&A with top student tutor</p>
+              </div>
+        
+              <!-- Collect Email -->
+              <input type="email" id="student-email" placeholder="Enter your email for session recording" required>
+        
+              <!-- Pay Button -->
+              <button id="pay-button" class="payment-button">
+                <i class="fas fa-lock"></i> Pay £4 and Join Group Session
+              </button>
+        
+              <p style="margin-top: 1.5rem; font-size: 0.9rem; color: var(--gray); text-align: center; line-height: 1.5;">
+                <i class="fas fa-video"></i> Session recording will be sent to this email within 1 hour<br>
+                <i class="fas fa-users"></i> Google Meet link will be sent after payment
+              </p>
+            </div>
+          </div>
         </div>
+        
+        <script>
+          // Pay button redirect
+          document.getElementById('pay-button').addEventListener('click', () => {
+            const email = document.getElementById('student-email').value.trim();
+        
+            if (!email) {
+              alert('Please enter your email first.');
+              return;
+            }
+        
+            // Redirect to Stripe Payment Link
+            window.location.href = 'https://buy.stripe.com/eVq00d8NCdRGdPv53S8so00';
+          });
+        
+          // Close modal functionality (optional)
+          const modal = document.getElementById('payment-modal');
+          document.querySelector('.close-modal').addEventListener('click', () => {
+            modal.style.display = 'none';
+          });
+        </script>
 
         <!-- Success Modal -->
         <div id="success-modal" class="modal">
