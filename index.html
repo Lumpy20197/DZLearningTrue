@@ -879,7 +879,7 @@
             margin: 3rem 0;
         }
         
-        /* Supercurricular Subcategories */
+        /* Olympiad Subcategories */
         .subcategory-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1144,7 +1144,7 @@
             <nav class="top-nav">
                 <a href="#home" class="nav-link active" data-page="home">Home</a>
                 <a href="#gcse" class="nav-link" data-page="gcse">GCSE</a>
-                <a href="#supercurriculars" class="nav-link" data-page="supercurriculars">Supercurriculars</a>
+                <a href="#Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
                 <a href="#tutors" class="nav-link" data-page="tutors">Our Tutors</a>
                 <a href="#" class="nav-link" id="book-session">Book Session</a>
             </nav>
@@ -2045,8 +2045,8 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
-                    <i class="fas fa-trophy"></i> Supercurriculars
+                <a href="#Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                    <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb-current">
@@ -2054,8 +2054,8 @@
                 </span>
             </div>
             
-            <button class="back-button" id="back-to-supercurriculars-maths">
-                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            <button class="back-button" id="back-to-Olympiads-maths">
+                <i class="fas fa-arrow-left"></i> Back to Olympiads
             </button>
             
             <div class="page-header">
@@ -2211,8 +2211,8 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
-                    <i class="fas fa-trophy"></i> Supercurriculars
+                <a href="#Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                    <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb-current">
@@ -2220,8 +2220,8 @@
                 </span>
             </div>
             
-            <button class="back-button" id="back-to-supercurriculars-physics">
-                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            <button class="back-button" id="back-to-Olympiads-physics">
+                <i class="fas fa-arrow-left"></i> Back to Olympiads
             </button>
             
             <div class="page-header">
@@ -2358,8 +2358,8 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
-                    <i class="fas fa-trophy"></i> Supercurriculars
+                <a href="#Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                    <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb-current">
@@ -2367,8 +2367,8 @@
                 </span>
             </div>
             
-            <button class="back-button" id="back-to-supercurriculars-chemistry">
-                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            <button class="back-button" id="back-to-Olympiads-chemistry">
+                <i class="fas fa-arrow-left"></i> Back to Olympiads
             </button>
             
             <div class="page-header">
@@ -2589,11 +2589,11 @@
             </div>
         </section>
 
-        <!-- Supercurriculars Page -->
-        <section id="supercurriculars-page" class="page">
-            <div id="supercurriculars" class="section-anchor"></div>
+        <!-- Olympiads Page -->
+        <section id="Olympiads-page" class="page">
+            <div id="Olympiads" class="section-anchor"></div>
             <div class="editable-section">
-                <h2 id="supercurriculars-heading"><i class="fas fa-trophy"></i> Supercurricular Group Sessions</h2>
+                <h2 id="Olympiads-heading"><i class="fas fa-trophy"></i> Olympiad Group Sessions</h2>
                 <div class="group-session-badge">Interactive Group Learning</div>
                 <p>Specialized group sessions for academic competitions and enrichment activities. Recordings provided for review.</p>
                 <div class="subjects-grid">
@@ -2767,7 +2767,7 @@
                 <h3>Quick Links</h3>
                 <a href="#home" data-page="home">Home</a>
                 <a href="#gcse" data-page="gcse">GCSE Group Sessions</a>
-                <a href="#supercurriculars" data-page="supercurriculars">Supercurriculars</a>
+                <a href="#Olympiads" data-page="Olympiads">Olympiads</a>
                 <a href="#tutors" data-page="tutors">Our Student Tutors</a>
                 <a href="#" id="footer-book">Book Group Session</a>
             </div>
@@ -2825,9 +2825,9 @@
             updateActiveNav('gcse');
         }
 
-        function showSupercurricularsPage() {
-            showPage('supercurriculars-page');
-            updateActiveNav('supercurriculars');
+        function showOlympiadsPage() {
+            showPage('Olympiads-page');
+            updateActiveNav('Olympiads');
         }
 
         // GCSE Subject Detail Pages
@@ -2871,20 +2871,20 @@
             updateActiveNav('gcse');
         }
 
-        // Supercurricular Detail Pages
+        // Olympiad Detail Pages
         function showMathsChallengePage() {
             showPage('maths-challenge-page');
-            updateActiveNav('supercurriculars');
+            updateActiveNav('Olympiads');
         }
 
         function showPhysicsOlympiadPage() {
             showPage('physics-olympiad-page');
-            updateActiveNav('supercurriculars');
+            updateActiveNav('Olympiads');
         }
 
         function showChemistryOlympiadPage() {
             showPage('chemistry-olympiad-page');
-            updateActiveNav('supercurriculars');
+            updateActiveNav('Olympiads');
         }
 
         // Navigation between pages
@@ -2930,8 +2930,8 @@
                 if(page) {
                     if (page === 'gcse') {
                         showGCSESubjectsPage();
-                    } else if (page === 'supercurriculars') {
-                        showSupercurricularsPage();
+                    } else if (page === 'Olympiads') {
+                        showOlympiadsPage();
                     } else {
                         showPage(`${page}-page`);
                         updateActiveNav(page);
@@ -3015,7 +3015,7 @@
                 });
             });
             
-            // Supercurricular Cards
+            // Olympiad Cards
             document.getElementById('maths-challenge-card').addEventListener('click', function(e) {
                 if (!e.target.classList.contains('cta-button')) {
                     showMathsChallengePage();
@@ -3034,7 +3034,7 @@
                 }
             });
             
-            // Supercurricular Detail Page Buttons
+            // Olympiad Detail Page Buttons
             document.querySelectorAll('#maths-challenge-card .cta-button, #physics-olympiad-card .cta-button, #chemistry-olympiad-card .cta-button').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -3050,9 +3050,9 @@
             document.getElementById('back-to-gcse-physics').addEventListener('click', showGCSESubjectsPage);
             document.getElementById('back-to-gcse-chemistry').addEventListener('click', showGCSESubjectsPage);
             document.getElementById('back-to-gcse-biology').addEventListener('click', showGCSESubjectsPage);
-            document.getElementById('back-to-supercurriculars-maths').addEventListener('click', showSupercurricularsPage);
-            document.getElementById('back-to-supercurriculars-physics').addEventListener('click', showSupercurricularsPage);
-            document.getElementById('back-to-supercurriculars-chemistry').addEventListener('click', showSupercurricularsPage);
+            document.getElementById('back-to-Olympiads-maths').addEventListener('click', showOlympiadsPage);
+            document.getElementById('back-to-Olympiads-physics').addEventListener('click', showOlympiadsPage);
+            document.getElementById('back-to-Olympiads-chemistry').addEventListener('click', showOlympiadsPage);
             
             // Breadcrumb Navigation
             document.querySelectorAll('.breadcrumb-item').forEach(item => {
@@ -3061,8 +3061,8 @@
                     const page = this.dataset.page;
                     if (page === 'gcse') {
                         showGCSESubjectsPage();
-                    } else if (page === 'supercurriculars') {
-                        showSupercurricularsPage();
+                    } else if (page === 'Olympiads') {
+                        showOlympiadsPage();
                     } else if (page === 'home') {
                         showPage('home-page');
                         updateActiveNav('home');
