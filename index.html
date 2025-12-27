@@ -879,6 +879,129 @@
             margin: 3rem 0;
         }
         
+        /* Supercurricular Subcategories */
+        .subcategory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .subcategory-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            border-top: 4px solid var(--accent);
+        }
+        
+        .subcategory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .subcategory-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .subcategory-level {
+            display: inline-block;
+            background-color: rgba(42, 92, 130, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+        
+        /* Challenge Details */
+        .challenge-details {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .challenge-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .challenge-level {
+            background-color: rgba(42, 92, 130, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .level-title {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .level-year {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        /* Olympiad Sections */
+        .olympiad-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .round-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .round-card {
+            background-color: rgba(42, 92, 130, 0.05);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .round-number {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-container {
@@ -971,6 +1094,18 @@
             .step-number {
                 min-width: 40px;
                 text-align: center;
+            }
+            
+            .subcategory-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .challenge-levels {
+                grid-template-columns: 1fr;
+            }
+            
+            .round-grid {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -1135,7 +1270,7 @@
                         </div>
                     </div>
                     
-                    <div class="subject-card" data-subject="physics">
+                    <div class="subject-card" data-subject="physics" id="gcse-physics-card">
                         <div class="subject-icon">
                             <i class="fas fa-atom"></i>
                         </div>
@@ -1143,10 +1278,13 @@
                             <h3>Physics</h3>
                             <p>Interactive physics sessions with demonstrations and problem-solving. Tutor achieved A* in A-Level Physics.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="subject-card" data-subject="chemistry">
+                    <div class="subject-card" data-subject="chemistry" id="gcse-chemistry-card">
                         <div class="subject-icon">
                             <i class="fas fa-flask"></i>
                         </div>
@@ -1154,10 +1292,13 @@
                             <h3>Chemistry</h3>
                             <p>Master chemical concepts with our Oxford Chemistry student tutor. Group discussions and practice questions.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="subject-card" data-subject="biology">
+                    <div class="subject-card" data-subject="biology" id="gcse-biology-card">
                         <div class="subject-icon">
                             <i class="fas fa-dna"></i>
                         </div>
@@ -1165,6 +1306,9 @@
                             <h3>Biology</h3>
                             <p>Learn biology from a medical student who achieved top grades. Interactive sessions with diagrams and explanations.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Schedule & Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1180,7 +1324,7 @@
             </div>
         </section>
 
-        <!-- NEW: GCSE Maths Detail Page -->
+        <!-- GCSE Maths Detail Page -->
         <section id="gcse-maths-page" class="page">
             <div class="breadcrumb">
                 <a href="#home" class="breadcrumb-item" data-page="home">
@@ -1196,7 +1340,7 @@
                 </span>
             </div>
             
-            <button class="back-button" id="back-to-gcse">
+            <button class="back-button" id="back-to-gcse-maths">
                 <i class="fas fa-arrow-left"></i> Back to GCSE Subjects
             </button>
             
@@ -1366,6 +1510,994 @@
             </div>
         </section>
 
+        <!-- GCSE Physics Detail Page -->
+        <section id="gcse-physics-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#gcse" class="breadcrumb-item" data-page="gcse">
+                    <i class="fas fa-book"></i> GCSE Subjects
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-atom"></i> GCSE Physics
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-gcse-physics">
+                <i class="fas fa-arrow-left"></i> Back to GCSE Subjects
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <h1>GCSE Physics Group Tutoring</h1>
+                <p>Master physics concepts with interactive demonstrations and problem-solving</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Large Group Sessions • £4 per session • Recordings Provided
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
+                <p>Our GCSE Physics sessions combine theory with practical applications:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Concept Introduction (10 mins)</h3>
+                            <p>Clear explanations with real-world examples and simple demonstrations</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Mathematical Applications (15 mins)</h3>
+                            <p>Step-by-step solutions to physics problems, focusing on equations and units</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Practical Problems (20 mins)</h3>
+                            <p>Group work on exam-style questions with guided support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Review & Extension (15 mins)</h3>
+                            <p>Address questions, discuss exam techniques, and provide challenge questions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
+                <p>Weekly group sessions - Choose the time that works best for you:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:30 PM - 6:30 PM</div>
+                            <div class="session-date">📅 Every Tuesday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Forces & Motion</div>
+                            <div class="session-details">Week 1: Newton's Laws • Week 2: Momentum • Week 3: Forces in action</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:00 PM - 7:00 PM</div>
+                            <div class="session-date">📅 Every Thursday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Energy & Waves</div>
+                            <div class="session-details">Week 1: Energy transfers • Week 2: Wave properties • Week 3: Electromagnetic spectrum</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 3:00 PM - 4:00 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Electricity & Magnetism</div>
+                            <div class="session-details">Week 1: Circuit basics • Week 2: Electromagnetism • Week 3: Transformers</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 4:30 PM - 5:30 PM</div>
+                            <div class="session-date">📅 Every Sunday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Particle Physics</div>
+                            <div class="session-details">Week 1: Atomic structure • Week 2: Radioactivity • Week 3: Nuclear physics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
+                <p>We cover all major GCSE Physics topics across all exam boards:</p>
+                
+                <div class="curriculum-grid">
+                    <div class="curriculum-topic">
+                        <div class="topic-number">1</div>
+                        <h4>Forces</h4>
+                        <p>Motion, Newton's Laws, momentum, pressure</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">2</div>
+                        <h4>Energy</h4>
+                        <p>Energy transfers, resources, power, efficiency</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">3</div>
+                        <h4>Waves</h4>
+                        <p>Properties, sound, light, electromagnetic spectrum</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">4</div>
+                        <h4>Electricity</h4>
+                        <p>Circuits, current, voltage, resistance, power</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">5</div>
+                        <h4>Magnetism</h4>
+                        <p>Magnets, electromagnetism, transformers</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">6</div>
+                        <h4>Particle Physics</h4>
+                        <p>Atoms, radioactivity, nuclear fission/fusion</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-calendar-check"></i> Ready to Join?</h2>
+                <p>Book your spot in our next GCSE Physics group session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute session</div>
+                </div>
+                <button class="cta-button" id="book-physics-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book GCSE Physics Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🔬 Practical focus • 👥 10-20 students per group
+                </p>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
+                <p>Join our Discord server to ask about GCSE Physics or discuss concepts with peers!</p>
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i> Join Physics Discussion
+                </a>
+            </div>
+        </section>
+
+        <!-- GCSE Chemistry Detail Page -->
+        <section id="gcse-chemistry-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#gcse" class="breadcrumb-item" data-page="gcse">
+                    <i class="fas fa-book"></i> GCSE Subjects
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-flask"></i> GCSE Chemistry
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-gcse-chemistry">
+                <i class="fas fa-arrow-left"></i> Back to GCSE Subjects
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-flask"></i>
+                </div>
+                <h1>GCSE Chemistry Group Tutoring</h1>
+                <p>Master chemical concepts with interactive explanations and practice</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Large Group Sessions • £4 per session • Recordings Provided
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
+                <p>Our GCSE Chemistry sessions make complex concepts accessible:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Concept Building (10 mins)</h3>
+                            <p>Clear explanations with diagrams and real-world examples</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Chemical Calculations (15 mins)</h3>
+                            <p>Step-by-step mole calculations, formula mass, and concentration</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Reaction Practice (20 mins)</h3>
+                            <p>Balancing equations, predicting products, understanding mechanisms</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Application & Review (15 mins)</h3>
+                            <p>Exam-style questions, practical applications, and common misconceptions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
+                <p>Weekly group sessions - Choose the time that works best for you:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:00 PM - 7:00 PM</div>
+                            <div class="session-date">📅 Every Monday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Atomic Structure</div>
+                            <div class="session-details">Week 1: Atoms & elements • Week 2: Periodic table • Week 3: Bonding</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:00 PM - 6:00 PM</div>
+                            <div class="session-date">📅 Every Wednesday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Organic Chemistry</div>
+                            <div class="session-details">Week 1: Hydrocarbons • Week 2: Alcohols & acids • Week 3: Polymers</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 2:30 PM - 3:30 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Chemical Changes</div>
+                            <div class="session-details">Week 1: Acids & bases • Week 2: Electrolysis • Week 3: Redox</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 11:00 AM - 12:00 PM</div>
+                            <div class="session-date">📅 Every Sunday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Energy Changes</div>
+                            <div class="session-details">Week 1: Exo/endothermic • Week 2: Bond energies • Week 3: Rates of reaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
+                <p>We cover all major GCSE Chemistry topics across all exam boards:</p>
+                
+                <div class="curriculum-grid">
+                    <div class="curriculum-topic">
+                        <div class="topic-number">1</div>
+                        <h4>Atomic Structure</h4>
+                        <p>Atoms, elements, periodic table, bonding</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">2</div>
+                        <h4>Chemical Changes</h4>
+                        <p>Acids, bases, salts, electrolysis, redox</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">3</div>
+                        <h4>Energy Changes</h4>
+                        <p>Exo/endothermic, bond energies, rates</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">4</div>
+                        <h4>Organic Chemistry</h4>
+                        <p>Hydrocarbons, alcohols, polymers, analysis</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">5</div>
+                        <h4>Chemical Analysis</h4>
+                        <p>Tests, chromatography, instrumental methods</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">6</div>
+                        <h4>Earth Sciences</h4>
+                        <p>Atmosphere, resources, using materials</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-calendar-check"></i> Ready to Join?</h2>
+                <p>Book your spot in our next GCSE Chemistry group session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute session</div>
+                </div>
+                <button class="cta-button" id="book-chemistry-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book GCSE Chemistry Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🧪 Practical focus • 👥 10-20 students per group
+                </p>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
+                <p>Join our Discord server to ask about GCSE Chemistry or discuss reactions with peers!</p>
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i> Join Chemistry Discussion
+                </a>
+            </div>
+        </section>
+
+        <!-- GCSE Biology Detail Page -->
+        <section id="gcse-biology-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#gcse" class="breadcrumb-item" data-page="gcse">
+                    <i class="fas fa-book"></i> GCSE Subjects
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-dna"></i> GCSE Biology
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-gcse-biology">
+                <i class="fas fa-arrow-left"></i> Back to GCSE Subjects
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-dna"></i>
+                </div>
+                <h1>GCSE Biology Group Tutoring</h1>
+                <p>Master biological concepts with clear diagrams and practical applications</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Large Group Sessions • £4 per session • Recordings Provided
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> What to Expect Each Lesson</h2>
+                <p>Our GCSE Biology sessions make complex systems understandable:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Concept Introduction (10 mins)</h3>
+                            <p>Clear explanations with diagrams and real-world examples</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Process Breakdown (15 mins)</h3>
+                            <p>Step-by-step understanding of biological processes and systems</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Application Practice (20 mins)</h3>
+                            <p>Exam-style questions, data interpretation, and extended writing</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Review & Connections (15 mins)</h3>
+                            <p>Linking concepts, addressing misconceptions, and exam tips</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Lesson Timetable</h2>
+                <p>Weekly group sessions - Choose the time that works best for you:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:00 PM - 6:00 PM</div>
+                            <div class="session-date">📅 Every Tuesday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Cell Biology</div>
+                            <div class="session-details">Week 1: Cell structure • Week 2: Transport • Week 3: Cell division</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:30 PM - 7:30 PM</div>
+                            <div class="session-date">📅 Every Thursday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Human Biology</div>
+                            <div class="session-details">Week 1: Digestive system • Week 2: Circulatory system • Week 3: Nervous system</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 1:00 PM - 2:00 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Genetics</div>
+                            <div class="session-details">Week 1: DNA & inheritance • Week 2: Genetic engineering • Week 3: Evolution</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 10:00 AM - 11:00 AM</div>
+                            <div class="session-date">📅 Every Sunday</div>
+                            <div class="session-topic"><strong>Topic:</strong> Ecology</div>
+                            <div class="session-details">Week 1: Ecosystems • Week 2: Biodiversity • Week 3: Human impact</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-graduation-cap"></i> Curriculum Coverage</h2>
+                <p>We cover all major GCSE Biology topics across all exam boards:</p>
+                
+                <div class="curriculum-grid">
+                    <div class="curriculum-topic">
+                        <div class="topic-number">1</div>
+                        <h4>Cell Biology</h4>
+                        <p>Cell structure, transport, division, organization</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">2</div>
+                        <h4>Human Biology</h4>
+                        <p>Organ systems, homeostasis, health, disease</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">3</div>
+                        <h4>Plant Biology</h4>
+                        <p>Photosynthesis, transport, reproduction</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">4</div>
+                        <h4>Genetics</h4>
+                        <p>DNA, inheritance, variation, evolution</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">5</div>
+                        <h4>Ecology</h4>
+                        <p>Ecosystems, biodiversity, human impact</p>
+                    </div>
+                    
+                    <div class="curriculum-topic">
+                        <div class="topic-number">6</div>
+                        <h4>Bioenergetics</h4>
+                        <p>Respiration, photosynthesis, metabolism</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-calendar-check"></i> Ready to Join?</h2>
+                <p>Book your spot in our next GCSE Biology group session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute session</div>
+                </div>
+                <button class="cta-button" id="book-biology-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book GCSE Biology Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🧬 Diagram focus • 👥 10-20 students per group
+                </p>
+            </div>
+            
+            <div class="discord-community">
+                <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
+                <p>Join our Discord server to ask about GCSE Biology or discuss biological concepts!</p>
+                <a href="https://discord.com/invite/BfHtYseAbRy" target="_blank" class="discord-button">
+                    <i class="fab fa-discord"></i> Join Biology Discussion
+                </a>
+            </div>
+        </section>
+
+        <!-- UK Maths Challenge Detail Page -->
+        <section id="maths-challenge-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
+                    <i class="fas fa-trophy"></i> Supercurriculars
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-medal"></i> UK Mathematics Challenges
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-supercurriculars-maths">
+                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h1>UK Mathematics Challenges Preparation</h1>
+                <p>Master problem-solving techniques for Junior, Intermediate and Senior Mathematics Challenges</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Group Sessions • £4 per session • Past Paper Practice
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-trophy"></i> Challenge Levels</h2>
+                <p>We offer preparation for all three levels of UK Mathematics Challenges:</p>
+                
+                <div class="challenge-details">
+                    <div class="challenge-levels">
+                        <div class="challenge-level">
+                            <div class="level-header">
+                                <div class="level-title">Junior Challenge (JMC)</div>
+                                <div class="level-year">Years 7-8</div>
+                            </div>
+                            <p><strong>Format:</strong> 60-minute multiple choice paper</p>
+                            <p><strong>Focus:</strong> Mathematical reasoning and problem-solving</p>
+                            <p><strong>Topics:</strong> Number, geometry, algebra, logic puzzles</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-challenge="jmc">Book JMC Session</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-level">
+                            <div class="level-header">
+                                <div class="level-title">Intermediate Challenge (IMC)</div>
+                                <div class="level-year">Years 9-11</div>
+                            </div>
+                            <p><strong>Format:</strong> 60-minute multiple choice paper</p>
+                            <p><strong>Focus:</strong> Advanced problem-solving techniques</p>
+                            <p><strong>Topics:</strong> All GCSE topics + extension problems</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-challenge="imc">Book IMC Session</button>
+                            </div>
+                        </div>
+                        
+                        <div class="challenge-level">
+                            <div class="level-header">
+                                <div class="level-title">Senior Challenge (SMC)</div>
+                                <div class="level-year">Years 12-13</div>
+                            </div>
+                            <p><strong>Format:</strong> 90-minute multiple choice paper</p>
+                            <p><strong>Focus:</strong> University-level problem solving</p>
+                            <p><strong>Topics:</strong> A-Level maths + advanced concepts</p>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-challenge="smc">Book SMC Session</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Session Structure</h2>
+                <p>Our challenge preparation sessions are designed to build problem-solving skills:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Strategy Review (15 mins)</h3>
+                            <p>Learn specific techniques for multiple choice challenges</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Past Paper Questions (25 mins)</h3>
+                            <p>Work through past paper questions with guided support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Problem-Solving Techniques (15 mins)</h3>
+                            <p>Learn advanced techniques and shortcuts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Time Management (5 mins)</h3>
+                            <p>Strategies for maximizing scores under time pressure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
+                <p>Weekly preparation sessions for each challenge level:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 4:30 PM - 5:30 PM</div>
+                            <div class="session-date">📅 Every Monday</div>
+                            <div class="session-topic"><strong>Level:</strong> Junior Challenge (JMC)</div>
+                            <div class="session-details">Week 1: Logic puzzles • Week 2: Geometry • Week 3: Number theory</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:00 PM - 6:00 PM</div>
+                            <div class="session-date">📅 Every Wednesday</div>
+                            <div class="session-topic"><strong>Level:</strong> Intermediate Challenge (IMC)</div>
+                            <div class="session-details">Week 1: Algebra • Week 2: Combinatorics • Week 3: Advanced geometry</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:30 PM - 7:30 PM</div>
+                            <div class="session-date">📅 Every Friday</div>
+                            <div class="session-topic"><strong>Level:</strong> Senior Challenge (SMC)</div>
+                            <div class="session-details">Week 1: Calculus • Week 2: Number theory • Week 3: Proof techniques</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-medal"></i> Ready to Excel in Maths Challenges?</h2>
+                <p>Book your spot in our next Mathematics Challenge preparation session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute preparation session</div>
+                </div>
+                <button class="cta-button" id="book-maths-challenge-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book Challenge Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🏆 Past paper focus • 👥 Small group coaching
+                </p>
+            </div>
+        </section>
+
+        <!-- Physics Olympiad Detail Page -->
+        <section id="physics-olympiad-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
+                    <i class="fas fa-trophy"></i> Supercurriculars
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-rocket"></i> Physics Olympiad
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-supercurriculars-physics">
+                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h1>Physics Olympiad Preparation</h1>
+                <p>Advanced physics problem-solving for UK Physics Olympiad and BPhO competitions</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Advanced Sessions • £4 per session • Problem-Solving Focus
+                </div>
+            </div>
+            
+            <div class="olympiad-section">
+                <h2><i class="fas fa-trophy"></i> Competition Rounds</h2>
+                <p>We prepare students for both main Physics Olympiad competitions:</p>
+                
+                <div class="round-grid">
+                    <div class="round-card">
+                        <div class="round-number">1</div>
+                        <h3>UK Physics Olympiad (Round 1)</h3>
+                        <p><strong>Format:</strong> 2-hour problem-solving paper</p>
+                        <p><strong>Target:</strong> Year 12 students</p>
+                        <p><strong>Focus:</strong> Core physics concepts with mathematical applications</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-olympiad="physics-round1">Book Round 1 Session</button>
+                        </div>
+                    </div>
+                    
+                    <div class="round-card">
+                        <div class="round-number">2</div>
+                        <h3>BPhO (British Physics Olympiad)</h3>
+                        <p><strong>Format:</strong> 2.5-hour challenging paper</p>
+                        <p><strong>Target:</strong> Year 13 students</p>
+                        <p><strong>Focus:</strong> Advanced physics with university-level problems</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-olympiad="bpho">Book BPhO Session</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Session Structure</h2>
+                <p>Our Physics Olympiad sessions focus on advanced problem-solving:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Concept Deep Dive (15 mins)</h3>
+                            <p>Advanced theory beyond A-Level syllabus</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Olympiad Problem Solving (30 mins)</h3>
+                            <p>Work through past paper problems with expert guidance</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Alternative Approaches (10 mins)</h3>
+                            <p>Learn multiple solution methods and shortcuts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Strategy Discussion (5 mins)</h3>
+                            <p>Time management and competition strategy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
+                <p>Weekly Olympiad preparation sessions:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:30 PM - 6:30 PM</div>
+                            <div class="session-date">📅 Every Tuesday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Mechanics</div>
+                            <div class="session-details">Advanced kinematics, rotational motion, Lagrangian mechanics</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:00 PM - 7:00 PM</div>
+                            <div class="session-date">📅 Every Thursday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Electromagnetism</div>
+                            <div class="session-details">Maxwell's equations, circuit theory, electromagnetic waves</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 2:00 PM - 3:00 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Modern Physics</div>
+                            <div class="session-details">Quantum mechanics, relativity, particle physics</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-rocket"></i> Ready for Physics Olympiad?</h2>
+                <p>Book your spot in our next Physics Olympiad preparation session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute advanced session</div>
+                </div>
+                <button class="cta-button" id="book-physics-olympiad-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book Olympiad Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • 🚀 Advanced problems • 👥 Expert coaching
+                </p>
+            </div>
+        </section>
+
+        <!-- Chemistry Olympiad Detail Page -->
+        <section id="chemistry-olympiad-page" class="page">
+            <div class="breadcrumb">
+                <a href="#home" class="breadcrumb-item" data-page="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#supercurriculars" class="breadcrumb-item" data-page="supercurriculars">
+                    <i class="fas fa-trophy"></i> Supercurriculars
+                </a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">
+                    <i class="fas fa-vial"></i> Chemistry Olympiad
+                </span>
+            </div>
+            
+            <button class="back-button" id="back-to-supercurriculars-chemistry">
+                <i class="fas fa-arrow-left"></i> Back to Supercurriculars
+            </button>
+            
+            <div class="page-header">
+                <div class="subject-icon-large">
+                    <i class="fas fa-vial"></i>
+                </div>
+                <h1>Chemistry Olympiad Preparation</h1>
+                <p>Advanced chemistry problem-solving for UK Chemistry Olympiad competitions</p>
+                <div class="group-session-badge" style="background-color: white; color: var(--primary); margin-top: 1rem;">
+                    Advanced Sessions • £4 per session • Problem-Solving Focus
+                </div>
+            </div>
+            
+            <div class="olympiad-section">
+                <h2><i class="fas fa-trophy"></i> Competition Structure</h2>
+                <p>We prepare students for the UK Chemistry Olympiad:</p>
+                
+                <div class="round-grid">
+                    <div class="round-card">
+                        <div class="round-number">1</div>
+                        <h3>Round 1: Theory Paper</h3>
+                        <p><strong>Format:</strong> 2-hour written paper</p>
+                        <p><strong>Target:</strong> Year 12-13 students</p>
+                        <p><strong>Focus:</strong> Chemical principles and problem-solving</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-olympiad="chemistry-round1">Book Round 1 Session</button>
+                        </div>
+                    </div>
+                    
+                    <div class="round-card">
+                        <div class="round-number">2</div>
+                        <h3>Round 2: Practical & Theory</h3>
+                        <p><strong>Format:</strong> Residential competition</p>
+                        <p><strong>Target:</strong> Top performers from Round 1</p>
+                        <p><strong>Focus:</strong> Laboratory skills and advanced theory</p>
+                        <div style="margin-top: 1rem;">
+                            <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem; width: 100%;" data-olympiad="chemistry-round2">Book Round 2 Prep</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Session Structure</h2>
+                <p>Our Chemistry Olympiad sessions focus on advanced chemical concepts:</p>
+                
+                <div class="structure-steps">
+                    <div class="structure-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Advanced Theory (15 mins)</h3>
+                            <p>University-level chemical concepts and principles</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Problem Analysis (30 mins)</h3>
+                            <p>Work through Olympiad problems with systematic approaches</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Synthesis Planning (10 mins)</h3>
+                            <p>Organic synthesis and reaction mechanisms</p>
+                        </div>
+                    </div>
+                    
+                    <div class="structure-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <h3>Data Interpretation (5 mins)</h3>
+                            <p>Spectroscopic data and experimental results analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="editable-section">
+                <h2><i class="fas fa-calendar-alt"></i> Timetable</h2>
+                <p>Weekly Olympiad preparation sessions:</p>
+                
+                <div class="timetable">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem;">March 2025 Schedule</h3>
+                    
+                    <div class="timetable-grid">
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 5:00 PM - 6:00 PM</div>
+                            <div class="session-date">📅 Every Monday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Physical Chemistry</div>
+                            <div class="session-details">Thermodynamics, kinetics, quantum chemistry</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 6:30 PM - 7:30 PM</div>
+                            <div class="session-date">📅 Every Wednesday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Organic Chemistry</div>
+                            <div class="session-details">Synthesis, mechanisms, spectroscopy</div>
+                        </div>
+                        
+                        <div class="timetable-session">
+                            <div class="session-time">⏰ 3:30 PM - 4:30 PM</div>
+                            <div class="session-date">📅 Every Saturday</div>
+                            <div class="session-topic"><strong>Focus:</strong> Inorganic Chemistry</div>
+                            <div class="session-details">Coordination chemistry, periodicity, analytical methods</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-card">
+                <h2><i class="fas fa-vial"></i> Ready for Chemistry Olympiad?</h2>
+                <p>Book your spot in our next Chemistry Olympiad preparation session</p>
+                <div style="margin: 2rem 0;">
+                    <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">£4</div>
+                    <div style="opacity: 0.9;">per 60-minute advanced session</div>
+                </div>
+                <button class="cta-button" id="book-chemistry-olympiad-session" style="background-color: white; color: var(--primary);">
+                    <i class="fas fa-lock"></i> Book Olympiad Session
+                </button>
+                <p style="margin-top: 1rem; opacity: 0.9; font-size: 0.9rem;">
+                    📧 Recording included • ⚗️ Advanced synthesis • 👥 Expert coaching
+                </p>
+            </div>
+        </section>
+
         <!-- Our Tutors Page -->
         <section id="tutors-page" class="page">
             <div id="tutors" class="section-anchor"></div>
@@ -1465,7 +2597,7 @@
                 <div class="group-session-badge">Interactive Group Learning</div>
                 <p>Specialized group sessions for academic competitions and enrichment activities. Recordings provided for review.</p>
                 <div class="subjects-grid">
-                    <div class="subject-card" data-super="maths-challenge">
+                    <div class="subject-card" data-super="maths-challenge" id="maths-challenge-card">
                         <div class="subject-icon">
                             <i class="fas fa-medal"></i>
                         </div>
@@ -1473,28 +2605,37 @@
                             <h3>UK Mathematics Challenge</h3>
                             <p>Group preparation for Junior, Intermediate and Senior Mathematics Challenges. Past paper practice and strategy sessions.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Challenge Details</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="subject-card" data-super="physics-olympiad">
+                    <div class="subject-card" data-super="physics-olympiad" id="physics-olympiad-card">
                         <div class="subject-icon">
                             <i class="fas fa-rocket"></i>
                         </div>
                         <div class="subject-content">
                             <h3>Physics Olympiad</h3>
-                            <p>Group sessions on advanced physics problem-solving techniques. Preparation for senior physics challenge targeted towards yr12 and BphO targeted towards yr13</p>
+                            <p>Group sessions on advanced physics problem-solving techniques. Preparation for UK Physics Olympiad and BPhO.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Olympiad Details</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="subject-card" data-super="chemistry-challenge">
+                    <div class="subject-card" data-super="chemistry-challenge" id="chemistry-olympiad-card">
                         <div class="subject-icon">
                             <i class="fas fa-vial"></i>
                         </div>
                         <div class="subject-content">
-                            <h3>Chemistry Challenge</h3>
-                            <p>Group preparation for national chemistry competitions with focus on organic and physical chemistry. Preparing you for the Chemistry Challenge on 31st January.</p>
+                            <h3>Chemistry Olympiad</h3>
+                            <p>Group preparation for UK Chemistry Olympiad with focus on advanced chemical concepts and problem-solving.</p>
                             <small>📧 Recording sent after each session</small>
+                            <div style="margin-top: 1rem;">
+                                <button class="cta-button" style="padding: 0.5rem 1rem; font-size: 0.9rem;">View Olympiad Details</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1657,32 +2798,107 @@
         let elements;
         let currentEmail = '';
 
-        // Function to show GCSE Maths detail page
-        function showGCSEMathsPage() {
-            showPage('gcse-maths-page');
-            updateActiveNav('gcse');
+        // Navigation functions
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            const activePage = document.getElementById(pageId);
+            if(activePage) {
+                activePage.classList.add('active');
+            }
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Function to go back to GCSE page
+        function updateActiveNav(page) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if(link.dataset.page === page) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Page navigation functions
         function showGCSESubjectsPage() {
             showPage('gcse-page');
             updateActiveNav('gcse');
-            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // Navigation between pages with smooth scrolling to sections
+        function showSupercurricularsPage() {
+            showPage('supercurriculars-page');
+            updateActiveNav('supercurriculars');
+        }
+
+        // GCSE Subject Detail Pages
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEPhysicsPage() {
+            showPage('gcse-physics-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEChemistryPage() {
+            showPage('gcse-chemistry-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEMathsPage() {
+            showPage('gcse-maths-page');
+            updateActiveNav('gcse');
+        }
+
+        function showGCSEBiologyPage() {
+            showPage('gcse-biology-page');
+            updateActiveNav('gcse');
+        }
+
+        // Supercurricular Detail Pages
+        function showMathsChallengePage() {
+            showPage('maths-challenge-page');
+            updateActiveNav('supercurriculars');
+        }
+
+        function showPhysicsOlympiadPage() {
+            showPage('physics-olympiad-page');
+            updateActiveNav('supercurriculars');
+        }
+
+        function showChemistryOlympiadPage() {
+            showPage('chemistry-olympiad-page');
+            updateActiveNav('supercurriculars');
+        }
+
+        // Navigation between pages
         document.querySelectorAll('.nav-link, .footer-section a, .logo').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // If it's a book session link
+                // Book session links
                 if(this.id === 'book-session' || this.id === 'book-now' || this.id === 'footer-book') {
                     showPaymentModal();
                     return;
                 }
                 
-                // Handle logo click - scroll to top
+                // Logo click
                 if(this.classList.contains('logo')) {
                     window.scrollTo({top: 0, behavior: 'smooth'});
                     showPage('home-page');
@@ -1695,7 +2911,6 @@
                     const sectionId = this.id.replace('-heading', '');
                     const sectionElement = document.getElementById(sectionId);
                     if(sectionElement) {
-                        // If we're not on the right page, switch to it first
                         if(sectionId === 'about' || sectionId === 'features') {
                             showPage('home-page');
                             updateActiveNav('home');
@@ -1703,8 +2918,6 @@
                             showPage(`${sectionId}-page`);
                             updateActiveNav(sectionId);
                         }
-                        
-                        // Scroll to the section
                         setTimeout(() => {
                             sectionElement.scrollIntoView({behavior: 'smooth'});
                         }, 100);
@@ -1717,40 +2930,15 @@
                 if(page) {
                     if (page === 'gcse') {
                         showGCSESubjectsPage();
+                    } else if (page === 'supercurriculars') {
+                        showSupercurricularsPage();
                     } else {
                         showPage(`${page}-page`);
                         updateActiveNav(page);
                     }
-                    
-                    // Scroll to top when switching pages
-                    window.scrollTo({top: 0, behavior: 'smooth'});
                 }
             });
         });
-
-        // Function to show a specific page and hide others
-        function showPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            // Show the selected page
-            const activePage = document.getElementById(pageId);
-            if(activePage) {
-                activePage.classList.add('active');
-            }
-        }
-
-        // Function to update active navigation link
-        function updateActiveNav(page) {
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if(link.dataset.page === page) {
-                    link.classList.add('active');
-                }
-            });
-        }
 
         // Payment Modal Functionality
         const paymentModal = document.getElementById('payment-modal');
@@ -1760,17 +2948,14 @@
         const processPaymentBtn = document.getElementById('pay-button');
         const successEmailElement = document.getElementById('success-email');
 
-        // Show payment modal
         function showPaymentModal() {
             paymentModal.style.display = 'flex';
         }
 
-        // Close payment modal
         closeModal.addEventListener('click', () => {
             paymentModal.style.display = 'none';
         });
 
-        // Close success modal
         closeSuccessModal.addEventListener('click', () => {
             successModal.style.display = 'none';
         });
@@ -1779,7 +2964,6 @@
             successModal.style.display = 'none';
         });
 
-        // Close modals when clicking outside
         [paymentModal, successModal].forEach(modal => {
             modal.addEventListener('click', (e) => {
                 if(e.target === modal) {
@@ -1790,62 +2974,117 @@
 
         // Pay button redirect
         document.getElementById('pay-button').addEventListener('click', () => {
-            // Redirect to Stripe Payment Link
             window.location.href = 'https://buy.stripe.com/eVq00d8NCdRGdPv53S8so00';
         });
 
-        // Email validation function
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
-
-        // Show success modal
-        function showSuccess(email) {
-            paymentModal.style.display = 'none';
-            successEmailElement.textContent = email;
-            successModal.style.display = 'flex';
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
-            // Add click handler for GCSE Maths card
+            // GCSE Subject Cards
             document.getElementById('gcse-maths-card').addEventListener('click', function(e) {
-                // Don't trigger if clicking the button inside the card
                 if (!e.target.classList.contains('cta-button')) {
                     showGCSEMathsPage();
                 }
             });
             
-            // Add click handler for "View Schedule & Details" button
-            document.querySelectorAll('#gcse-maths-card .cta-button').forEach(button => {
+            document.getElementById('gcse-physics-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showGCSEPhysicsPage();
+                }
+            });
+            
+            document.getElementById('gcse-chemistry-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showGCSEChemistryPage();
+                }
+            });
+            
+            document.getElementById('gcse-biology-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showGCSEBiologyPage();
+                }
+            });
+            
+            // GCSE Detail Page Buttons
+            document.querySelectorAll('#gcse-maths-card .cta-button, #gcse-physics-card .cta-button, #gcse-chemistry-card .cta-button, #gcse-biology-card .cta-button').forEach(button => {
                 button.addEventListener('click', function(e) {
-                    e.stopPropagation(); // Prevent card click event
-                    showGCSEMathsPage();
+                    e.stopPropagation();
+                    const card = this.closest('.subject-card');
+                    if (card.id === 'gcse-maths-card') showGCSEMathsPage();
+                    if (card.id === 'gcse-physics-card') showGCSEPhysicsPage();
+                    if (card.id === 'gcse-chemistry-card') showGCSEChemistryPage();
+                    if (card.id === 'gcse-biology-card') showGCSEBiologyPage();
                 });
             });
             
-            // Add click handler for back button
-            document.getElementById('back-to-gcse').addEventListener('click', showGCSESubjectsPage);
+            // Supercurricular Cards
+            document.getElementById('maths-challenge-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showMathsChallengePage();
+                }
+            });
             
-            // Add click handler for book maths session button
-            document.getElementById('book-maths-session').addEventListener('click', showPaymentModal);
+            document.getElementById('physics-olympiad-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showPhysicsOlympiadPage();
+                }
+            });
             
-            // Update breadcrumb navigation
+            document.getElementById('chemistry-olympiad-card').addEventListener('click', function(e) {
+                if (!e.target.classList.contains('cta-button')) {
+                    showChemistryOlympiadPage();
+                }
+            });
+            
+            // Supercurricular Detail Page Buttons
+            document.querySelectorAll('#maths-challenge-card .cta-button, #physics-olympiad-card .cta-button, #chemistry-olympiad-card .cta-button').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const card = this.closest('.subject-card');
+                    if (card.id === 'maths-challenge-card') showMathsChallengePage();
+                    if (card.id === 'physics-olympiad-card') showPhysicsOlympiadPage();
+                    if (card.id === 'chemistry-olympiad-card') showChemistryOlympiadPage();
+                });
+            });
+            
+            // Back Buttons
+            document.getElementById('back-to-gcse-maths').addEventListener('click', showGCSESubjectsPage);
+            document.getElementById('back-to-gcse-physics').addEventListener('click', showGCSESubjectsPage);
+            document.getElementById('back-to-gcse-chemistry').addEventListener('click', showGCSESubjectsPage);
+            document.getElementById('back-to-gcse-biology').addEventListener('click', showGCSESubjectsPage);
+            document.getElementById('back-to-supercurriculars-maths').addEventListener('click', showSupercurricularsPage);
+            document.getElementById('back-to-supercurriculars-physics').addEventListener('click', showSupercurricularsPage);
+            document.getElementById('back-to-supercurriculars-chemistry').addEventListener('click', showSupercurricularsPage);
+            
+            // Breadcrumb Navigation
             document.querySelectorAll('.breadcrumb-item').forEach(item => {
                 item.addEventListener('click', function(e) {
                     e.preventDefault();
                     const page = this.dataset.page;
                     if (page === 'gcse') {
                         showGCSESubjectsPage();
+                    } else if (page === 'supercurriculars') {
+                        showSupercurricularsPage();
                     } else if (page === 'home') {
                         showPage('home-page');
                         updateActiveNav('home');
-                        window.scrollTo({top: 0, behavior: 'smooth'});
                     }
                 });
             });
             
-            // Make headings editable on double-click
+            // Book Session Buttons on Detail Pages
+            document.getElementById('book-maths-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-physics-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-chemistry-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-biology-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-maths-challenge-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-physics-olympiad-session')?.addEventListener('click', showPaymentModal);
+            document.getElementById('book-chemistry-olympiad-session')?.addEventListener('click', showPaymentModal);
+            
+            // Challenge/Olympiad Level Buttons
+            document.querySelectorAll('[data-challenge], [data-olympiad]').forEach(button => {
+                button.addEventListener('click', showPaymentModal);
+            });
+            
+            // Editable Content
             const editableHeadings = document.querySelectorAll('.editable-section h2');
             editableHeadings.forEach(heading => {
                 heading.addEventListener('dblclick', () => {
@@ -1885,7 +3124,6 @@
                 });
             });
             
-            // Make content editable on double-click
             const editableContents = document.querySelectorAll('.editable-content');
             editableContents.forEach(content => {
                 content.addEventListener('dblclick', () => {
@@ -1894,7 +3132,6 @@
                     content.style.backgroundColor = '#fffef0';
                     content.focus();
                     
-                    // Add save button
                     const saveBtn = document.createElement('button');
                     saveBtn.innerHTML = '<i class="fas fa-save"></i> Save';
                     saveBtn.style.cssText = `
@@ -1922,7 +3159,6 @@
                         saveBtn.remove();
                     });
                     
-                    // Auto-save on clicking outside
                     document.addEventListener('click', function autoSave(e) {
                         if (!content.contains(e.target) && e.target !== saveBtn) {
                             content.contentEditable = 'false';
@@ -1937,26 +3173,21 @@
                 });
             });
             
-            // Set initial active page
+            // Set initial page
             showPage('home-page');
             updateActiveNav('home');
-            
-            // Auto-scroll to top when page loads
             window.scrollTo(0, 0);
         });
 
-        // Add click handler for other subject cards to open booking modal
-        document.querySelectorAll('.subject-card').forEach(card => {
-            if (card.id !== 'gcse-maths-card') {
-                card.addEventListener('click', function() {
-                    showPaymentModal();
-                });
-            }
+        // Click handler for other subject cards (without detail pages)
+        document.querySelectorAll('.subject-card:not([id])').forEach(card => {
+            card.addEventListener('click', function() {
+                showPaymentModal();
+            });
         });
 
         // Keyboard shortcuts
         document.addEventListener('keydown', (e) => {
-            // Escape key closes modals
             if(e.key === 'Escape') {
                 if(paymentModal.style.display === 'flex') {
                     paymentModal.style.display = 'none';
@@ -1966,7 +3197,6 @@
                 }
             }
             
-            // Ctrl+B to book session
             if(e.ctrlKey && e.key === 'b') {
                 e.preventDefault();
                 showPaymentModal();
