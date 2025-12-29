@@ -2,8 +2,25 @@
 <html lang="en">
     
 <head>
-    <title>DZLearning - Group Tutoring by Top Students</title>
-    <link rel="icon" type="image/x-icon" href="256Logo.png">
+    <meta charset="utf-8">
+<title>DZLearning - Group Tutoring by Top Students</title>
+    
+    <meta name="description" content="DZLearning provides affordable, high-quality group tutoring for GCSE and Olympiad subjects, led by top-performing student tutors.">
+    <meta name="theme-color" content="#2A5C82">
+    <link rel="canonical" href="">
+    <meta property="og:site_name" content="DZLearning">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DZLearning - Group Tutoring by Top Students">
+    <meta property="og:description" content="Affordable, high-quality group tutoring for GCSE and Olympiad subjects, led by top-performing student tutors.">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="256Logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DZLearning - Group Tutoring by Top Students">
+    <meta name="twitter:description" content="Affordable, high-quality group tutoring for GCSE and Olympiad subjects, led by top-performing student tutors.">
+    <meta name="twitter:image" content="256Logo.png">
+    <link rel="preconnect" href="https://js.stripe.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="icon" type="image/x-icon" href="256Logo.png">
     
     <!-- Load Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -38,6 +55,23 @@
             line-height: 1.6;
             scroll-behavior: smooth;
         }
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -60px;
+            background: white;
+            color: var(--dark);
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+            z-index: 2000;
+            text-decoration: none;
+            border: 1px solid rgba(15, 23, 42, 0.10);
+        }
+        .skip-link:focus {
+            top: 1rem;
+        }
+
         
         /* Header & Navigation */
         header {
@@ -147,7 +181,7 @@
             border-radius: 8px;
             z-index: 1000;
             padding: 0.5rem 0;
-            margin-top: 0.5rem;
+            margin-top: 0;
         }
         
         .nav-dropdown:hover .dropdown-content {
@@ -731,7 +765,8 @@
             font-size: 1.2rem;
         }
         
-        .footer-section a {
+        .footer-section a,
+        .footer-section .footer-item {
             color: #ddd;
             text-decoration: none;
             display: block;
@@ -1309,40 +1344,125 @@
                 padding: 1.5rem 1rem;
             }
         }
-    </style>
+    
+        /* --- Polished UI + accessibility upgrades --- */
+        :root {
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 12px 40px rgba(15, 23, 42, 0.12);
+            --border-subtle: rgba(15, 23, 42, 0.08);
+            --ring: rgba(58, 124, 165, 0.35);
+        }
+
+        body {
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        header {
+            background-color: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .hero {
+            border-radius: var(--radius-lg);
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+        }
+
+        .feature-card, .subject-card, .tutor-card, .modal-content {
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .feature-card:hover, .subject-card:hover, .tutor-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-link {
+            border-radius: 10px;
+        }
+
+        .dropdown-content {
+            margin-top: 0;
+            border: 1px solid var(--border-subtle);
+            box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+        }
+
+        /* Keyboard accessibility for dropdowns */
+        .nav-dropdown:focus-within .dropdown-content {
+            display: block;
+        }
+
+        /* Professional focus styles */
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--ring);
+        }
+
+        input, select, textarea {
+            border: 1px solid var(--border-subtle);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: rgba(58, 124, 165, 0.6);
+        }
+
+        /* Reduce motion when requested */
+        @media (prefers-reduced-motion: reduce) {
+            html:focus-within { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+</style>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <!-- Header with Navigation -->
     <header>
         <div class="nav-container">
             <a href="?page=home" class="logo">
                 <img src="256Logo.png" alt="DZLearning" width="80" height="80">
             </a>
-            <button class="mobile-menu-toggle">
+            <button class="mobile-menu-toggle" aria-label="Open menu" aria-controls="primary-navigation" aria-expanded="false">
                 <i class="fas fa-bars"></i>
             </button>
-            <nav class="top-nav">
+            <nav class="top-nav" id="primary-navigation">
                 <div class="nav-links-container">
                     <a href="?page=home" class="nav-link active" data-page="home">Home</a>
                     
                     <div class="nav-dropdown">
-                        <a href="?page=gcse" class="nav-link" data-page="gcse">GCSE</a>
+                        <a href="?page=gcse" class="nav-link" data-page="gcse" aria-haspopup="true">GCSE</a>
                         <div class="dropdown-content">
-                            <a href="?page=gcse" class="dropdown-item" onclick="showGCSESubjectsPage(); return false;">All GCSE Subjects</a>
-                            <a href="?page=gcse-maths" class="dropdown-item" onclick="showGCSEMathsPage(); return false;">GCSE Maths</a>
-                            <a href="?page=gcse-physics" class="dropdown-item" onclick="showGCSEPhysicsPage(); return false;">GCSE Physics</a>
-                            <a href="?page=gcse-chemistry" class="dropdown-item" onclick="showGCSEChemistryPage(); return false;">GCSE Chemistry</a>
-                            <a href="?page=gcse-biology" class="dropdown-item" onclick="showGCSEBiologyPage(); return false;">GCSE Biology</a>
+                            <a class="dropdown-item" data-page="gcse" href="?page=gcse">All GCSE Subjects</a>
+                            <a class="dropdown-item" data-page="gcse-maths" href="?page=gcse-maths">GCSE Maths</a>
+                            <a class="dropdown-item" data-page="gcse-physics" href="?page=gcse-physics">GCSE Physics</a>
+                            <a class="dropdown-item" data-page="gcse-chemistry" href="?page=gcse-chemistry">GCSE Chemistry</a>
+                            <a class="dropdown-item" data-page="gcse-biology" href="?page=gcse-biology">GCSE Biology</a>
                         </div>
                     </div>
                     
                     <div class="nav-dropdown">
-                        <a href="?page=Olympiads" class="nav-link" data-page="Olympiads">Olympiads</a>
+                        <a href="?page=olympiads" class="nav-link" data-page="olympiads" aria-haspopup="true">Olympiads</a>
                         <div class="dropdown-content">
-                            <a href="?page=Olympiads" class="dropdown-item" onclick="showOlympiadsPage(); return false;">All Olympiads</a>
-                            <a href="?page=maths-challenge" class="dropdown-item" onclick="showMathsChallengePage(); return false;">Maths Challenges</a>
-                            <a href="?page=physics-olympiad" class="dropdown-item" onclick="showPhysicsOlympiadPage(); return false;">Physics Olympiad</a>
-                            <a href="?page=chemistry-olympiad" class="dropdown-item" onclick="showChemistryOlympiadPage(); return false;">Chemistry Olympiad</a>
+                            <a class="dropdown-item" data-page="olympiads" href="?page=olympiads">All Olympiads</a>
+                            <a class="dropdown-item" data-page="maths-challenge" href="?page=maths-challenge">Maths Challenges</a>
+                            <a class="dropdown-item" data-page="physics-olympiad" href="?page=physics-olympiad">Physics Olympiad</a>
+                            <a class="dropdown-item" data-page="chemistry-olympiad" href="?page=chemistry-olympiad">Chemistry Olympiad</a>
                         </div>
                     </div>
                     
@@ -1362,15 +1482,15 @@
                 <button class="cta-button" id="book-now">Book Your Group Session Now</button>
                 
                 <div class="social-links">
-                    <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram">
+                    <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i>
                         <span>Follow @dylanzhang.09</span>
                     </a>
-                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok">
+                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" rel="noopener noreferrer">
                         <i class="fab fa-tiktok"></i>
                         <span>Follow @dylanzhang.009</span>
                     </a>
-                    <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord">
+                    <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord" rel="noopener noreferrer">
                         <i class="fab fa-discord"></i>
                         <span>Join Discord Server</span>
                     </a>
@@ -1441,7 +1561,7 @@
             <div class="discord-community">
                 <h2><i class="fab fa-discord"></i> Join Our Study Community</h2>
                 <p>Connect with other students, share study resources, ask questions, and get exclusive updates about upcoming group sessions!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i>
                     Join Discord Server
                 </a>
@@ -1514,7 +1634,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-users"></i> Study Together on Discord</h2>
                 <p>Join our Discord server for a community of like-minded students preparing for top grades in GCSEs!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i>
                     Join GCSE Study Group
                 </a>
@@ -1701,7 +1821,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
                 <p>Join our Discord server to ask about the GCSE Maths curriculum, schedule, or anything else!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i> Join Maths Discussion
                 </a>
             </div>
@@ -1877,7 +1997,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
                 <p>Join our Discord server to ask about GCSE Physics or discuss concepts with peers!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i> Join Physics Discussion
                 </a>
             </div>
@@ -2053,7 +2173,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
                 <p>Join our Discord server to ask about GCSE Chemistry or discuss reactions with peers!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i> Join Chemistry Discussion
                 </a>
             </div>
@@ -2229,7 +2349,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-question-circle"></i> Have Questions?</h2>
                 <p>Join our Discord server to ask about GCSE Biology or discuss biological concepts!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i> Join Biology Discussion
                 </a>
             </div>
@@ -2242,7 +2362,7 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="?page=Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                <a href="?page=olympiads" class="breadcrumb-item" data-page="olympiads">
                     <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
@@ -2408,7 +2528,7 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="?page=Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                <a href="?page=olympiads" class="breadcrumb-item" data-page="olympiads">
                     <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
@@ -2555,7 +2675,7 @@
                     <i class="fas fa-home"></i> Home
                 </a>
                 <span class="breadcrumb-separator">/</span>
-                <a href="?page=Olympiads" class="breadcrumb-item" data-page="Olympiads">
+                <a href="?page=olympiads" class="breadcrumb-item" data-page="olympiads">
                     <i class="fas fa-trophy"></i> Olympiads
                 </a>
                 <span class="breadcrumb-separator">/</span>
@@ -2752,15 +2872,15 @@
                         <h3>🔗 Connect with Me on Social Media</h3>
                         <p>Follow my learning journey and get daily study tips! On Instagram (@dylanzhang.09) I share study routines and exam advice. On TikTok (@dylanzhang.009) you'll find quick revision tips and behind-the-scenes of our tutoring sessions. I often share exclusive content about upcoming group sessions and competition preparation!</p>
                         <div class="social-links" style="margin-top: 1rem; justify-content: flex-start;">
-                            <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" style="padding: 0.5rem 1rem;">
+                            <a href="https://instagram.com/dylanzhang.09" target="_blank" class="social-link instagram" style="padding: 0.5rem 1rem;" rel="noopener noreferrer">
                                 <i class="fab fa-instagram"></i>
                                 <span>@dylanzhang.09</span>
                             </a>
-                            <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" style="padding: 0.5rem 1rem;">
+                            <a href="https://tiktok.com/@dylanzhang.009" target="_blank" class="social-link tiktok" style="padding: 0.5rem 1rem;" rel="noopener noreferrer">
                                 <i class="fab fa-tiktok"></i>
                                 <span>@dylanzhang.009</span>
                             </a>
-                            <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;">
+                            <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="social-link discord" style="padding: 0.5rem 1rem;" rel="noopener noreferrer">
                                 <i class="fab fa-discord"></i>
                                 <span>Join Discord</span>
                             </a>
@@ -2772,7 +2892,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-trophy"></i> Olympiad Preparation Hub</h2>
                 <p>Join our Discord server dedicated to Olympiad preparation! Share resources, solve problems together, and get tips from students who've excelled in these competitions.</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i>
                     Join Olympiad Preparation Server
                 </a>
@@ -2864,7 +2984,7 @@
             <div class="discord-community">
                 <h2><i class="fas fa-comments"></i> Connect with Tutors on Discord</h2>
                 <p>Join our Discord server to ask questions directly to our tutors, participate in Q&A sessions, and connect with other students!</p>
-                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button">
+                <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" class="discord-button" rel="noopener noreferrer">
                     <i class="fab fa-discord"></i>
                     Join Tutor Q&A Channel
                 </a>
@@ -2934,7 +3054,7 @@
                         <i class="fas fa-thumbs-up"></i> Got It!
                     </button>
                     <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
-                        Need help? Join our <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" style="color: #5865F2; font-weight: 600;">Discord server</a> for support.
+                        Need help? Join our <a href="https://discord.com/invite/ApaeykHhAe" target="_blank" style="color: #5865F2; font-weight: 600;" rel="noopener noreferrer">Discord server</a> for support.
                     </p>
                 </div>
             </div>
@@ -2949,10 +3069,10 @@
                 <p style="margin-bottom: 1rem; opacity: 0.9;">Group tutoring by top-achieving students.</p>
                 <p style="font-weight: 600; color: var(--accent);">Affordable • Relatable • Effective</p>
                 <div style="margin-top: 1.5rem;">
-                    <a href="https://instagram.com/dylanzhang.09" target="_blank">
+                    <a href="https://instagram.com/dylanzhang.09" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-instagram"></i> @dylanzhang.09
                     </a>
-                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank">
+                    <a href="https://tiktok.com/@dylanzhang.009" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-tiktok"></i> @dylanzhang.009
                     </a>
                 </div>
@@ -2962,16 +3082,16 @@
                 <h3>Quick Links</h3>
                 <a href="?page=home" data-page="home">Home</a>
                 <a href="?page=gcse" data-page="gcse">GCSE Group Sessions</a>
-                <a href="?page=Olympiads" data-page="Olympiads">Olympiads</a>
+                <a href="?page=olympiads" data-page="olympiads">Olympiads</a>
                 <a href="?page=tutors" data-page="tutors">Our Student Tutors</a>
             </div>
             
             <div class="footer-section">
                 <h3>Features</h3>
-                <a><i class="fas fa-user-graduate"></i> Top Student Tutors</a>
-                <a><i class="fas fa-users"></i> Large Group Sessions</a>
-                <a><i class="fas fa-video"></i> Recorded Lessons uploaded onto Youtube</a>
-                <a><i class="fas fa-video"></i> Affordable Pricing</a>
+                <div class="footer-item"><i class="fas fa-user-graduate"></i> Top Student Tutors</div>
+                <div class="footer-item"><i class="fas fa-users"></i> Large Group Sessions</div>
+                <div class="footer-item"><i class="fas fa-video"></i> Recorded Lessons uploaded onto Youtube</div>
+                <div class="footer-item"><i class="fas fa-video"></i> Affordable Pricing</div>
             </div>
         </div>
     </footer>
@@ -3010,7 +3130,60 @@
             return page ? page : null;
         }
 
-        function setRoute(route, replace = false) {
+        
+
+        function normalizeRoute(route) {
+            if (!route) return 'home';
+            if (route === 'Olympiads') return 'olympiads'; // backwards compatibility
+            return String(route).toLowerCase();
+        }
+
+
+        function applyRouteMeta(route) {
+            const META = {
+                home: {
+                    title: 'DZLearning - Group Tutoring by Top Students',
+                    description: 'Affordable, high-quality group tutoring for GCSE and Olympiad subjects, led by top-performing student tutors.'
+                },
+                gcse: {
+                    title: 'GCSE Group Tutoring | DZLearning',
+                    description: 'GCSE group tutoring for Maths, Physics, Chemistry, and Biology with structured weekly sessions and recorded lessons.'
+                },
+                'gcse-maths': { title: 'GCSE Maths Group Tutoring | DZLearning', description: 'GCSE Maths group tutoring with clear explanations, practice, and structured weekly support.' },
+                'gcse-physics': { title: 'GCSE Physics Group Tutoring | DZLearning', description: 'GCSE Physics group tutoring focused on exam technique, problem solving, and core concepts.' },
+                'gcse-chemistry': { title: 'GCSE Chemistry Group Tutoring | DZLearning', description: 'GCSE Chemistry group tutoring covering key topics, required practicals, and exam preparation.' },
+                'gcse-biology': { title: 'GCSE Biology Group Tutoring | DZLearning', description: 'GCSE Biology group tutoring with topic-by-topic coverage, retrieval practice, and exam skills.' },
+                olympiads: { title: 'Olympiad Preparation | DZLearning', description: 'Preparation for Maths Challenge and Science Olympiads with advanced problem solving and strategy.' },
+                'maths-challenge': { title: 'Maths Challenge Preparation | DZLearning', description: 'Targeted preparation for Maths Challenges with problem-solving technique and timed practice.' },
+                'physics-olympiad': { title: 'Physics Olympiad Preparation | DZLearning', description: 'Physics Olympiad preparation with deeper concepts, modelling, and rigorous practice problems.' },
+                'chemistry-olympiad': { title: 'Chemistry Olympiad Preparation | DZLearning', description: 'Chemistry Olympiad preparation with advanced topics, mechanisms, and competition-style questions.' },
+                tutors: { title: 'Our Tutors | DZLearning', description: 'Meet our top-performing student tutors and learn about their experience and specialisms.' }
+            };
+
+            const meta = META[route] || META.home;
+
+            document.title = meta.title;
+
+            const desc = document.querySelector('meta[name="description"]');
+            if (desc) desc.setAttribute('content', meta.description);
+
+            const ogTitle = document.querySelector('meta[property="og:title"]');
+            const ogDesc = document.querySelector('meta[property="og:description"]');
+            const ogUrl = document.querySelector('meta[property="og:url"]');
+            const twTitle = document.querySelector('meta[name="twitter:title"]');
+            const twDesc = document.querySelector('meta[name="twitter:description"]');
+
+            if (ogTitle) ogTitle.setAttribute('content', meta.title);
+            if (ogDesc) ogDesc.setAttribute('content', meta.description);
+            if (twTitle) twTitle.setAttribute('content', meta.title);
+            if (twDesc) twDesc.setAttribute('content', meta.description);
+
+            const canonical = document.querySelector('link[rel="canonical"]');
+            const url = `${window.location.origin}${window.location.pathname}?page=${encodeURIComponent(route)}`;
+            if (canonical) canonical.setAttribute('href', url);
+            if (ogUrl) ogUrl.setAttribute('content', url);
+        }
+function setRoute(route, replace = false) {
             const encoded = encodeURIComponent(route);
             const newUrl = `${window.location.pathname}?page=${encoded}`;
             const state = { page: route };
@@ -3028,6 +3201,8 @@
         }
 
         function renderRoute(route) {
+            route = normalizeRoute(route);
+            applyRouteMeta(route);
             switch(route) {
                 case 'home':
                     showPage('home-page');
@@ -3053,21 +3228,21 @@
                     showPage('gcse-biology-page');
                     updateActiveNav('gcse');
                     break;
-                case 'Olympiads':
+                case 'olympiads':
                     showPage('Olympiads-page');
-                    updateActiveNav('Olympiads');
+                    updateActiveNav('olympiads');
                     break;
                 case 'maths-challenge':
                     showPage('maths-challenge-page');
-                    updateActiveNav('Olympiads');
+                    updateActiveNav('olympiads');
                     break;
                 case 'physics-olympiad':
                     showPage('physics-olympiad-page');
-                    updateActiveNav('Olympiads');
+                    updateActiveNav('olympiads');
                     break;
                 case 'chemistry-olympiad':
                     showPage('chemistry-olympiad-page');
-                    updateActiveNav('Olympiads');
+                    updateActiveNav('olympiads');
                     break;
                 case 'tutors':
                     showPage('tutors-page');
@@ -3081,6 +3256,7 @@
         }
 
         function navigate(route, replace = false) {
+            route = normalizeRoute(route);
             setRoute(route, replace);
             renderRoute(route);
         }
@@ -3091,7 +3267,7 @@
         }
 
         function showOlympiadsPage() {
-            navigate('Olympiads');
+            navigate('olympiads');
         }
 
         // GCSE Subject Detail Pages
@@ -3133,6 +3309,7 @@
             if (mobileMenuToggle && topNav) {
                 mobileMenuToggle.addEventListener('click', () => {
                     topNav.classList.toggle('active');
+                    mobileMenuToggle.setAttribute('aria-expanded', topNav.classList.contains('active') ? 'true' : 'false');
                     mobileMenuToggle.innerHTML = topNav.classList.contains('active') ? 
                         '<i class="fas fa-times"></i>' : 
                         '<i class="fas fa-bars"></i>';
@@ -3177,7 +3354,7 @@
 
         
         // Navigation between pages (each page has its own ?page=... URL)
-        document.querySelectorAll('.nav-link[data-page], .footer-section a[data-page], .logo').forEach(link => {
+        document.querySelectorAll('.nav-link[data-page], .dropdown-item[data-page], .footer-section a[data-page], .logo').forEach(link => {
             link.addEventListener('click', function(e) {
                 // Allow browser default behaviour for opening in a new tab/window
                 if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
