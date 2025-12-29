@@ -3818,95 +3818,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             
             // Editable Content
-            const editableHeadings = document.querySelectorAll('.editable-section h2');
-            editableHeadings.forEach(heading => {
-                heading.addEventListener('dblclick', () => {
-                    const content = heading.textContent;
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.value = content;
-                    input.style.cssText = `
-                        width: 100%;
-                        font-size: 1.8rem;
-                        font-weight: 700;
-                        color: var(--primary);
-                        border: 2px solid var(--accent);
-                        border-radius: 4px;
-                        padding: 0.5rem;
-                        font-family: inherit;
-                    `;
-                    
-                    heading.style.display = 'none';
-                    heading.parentNode.insertBefore(input, heading);
-                    
-                    input.focus();
-                    input.select();
-                    
-                    const saveEdit = () => {
-                        heading.textContent = input.value;
-                        heading.style.display = 'flex';
-                        input.remove();
-                    };
-                    
-                    input.addEventListener('blur', saveEdit);
-                    input.addEventListener('keypress', (e) => {
-                        if(e.key === 'Enter') {
-                            saveEdit();
-                        }
-                    });
-                });
-            });
-            
-            const editableContents = document.querySelectorAll('.editable-content');
-            editableContents.forEach(content => {
-                content.addEventListener('dblclick', () => {
-                    content.contentEditable = 'true';
-                    content.style.border = '2px solid var(--accent)';
-                    content.style.backgroundColor = '#fffef0';
-                    content.focus();
-                    
-                    const saveBtn = document.createElement('button');
-                    saveBtn.innerHTML = '<i class="fas fa-save"></i> Save';
-                    saveBtn.style.cssText = `
-                        position: absolute;
-                        right: 10px;
-                        bottom: 10px;
-                        background-color: var(--accent);
-                        color: white;
-                        border: none;
-                        padding: 0.5rem 1rem;
-                        border-radius: 4px;
-                        cursor: pointer;
-                        font-family: inherit;
-                        font-weight: 600;
-                        z-index: 10;
-                    `;
-                    
-                    content.style.position = 'relative';
-                    content.appendChild(saveBtn);
-                    
-                    saveBtn.addEventListener('click', () => {
-                        content.contentEditable = 'false';
-                        content.style.border = '1px dashed #ddd';
-                        content.style.backgroundColor = '';
-                        saveBtn.remove();
-                    });
-                    
-                    document.addEventListener('click', function autoSave(e) {
-                        if (!content.contains(e.target) && e.target !== saveBtn) {
-                            content.contentEditable = 'false';
-                            content.style.border = '1px dashed #ddd';
-                            content.style.backgroundColor = '';
-                            if (saveBtn.parentNode) {
-                                saveBtn.remove();
-                            }
-                            document.removeEventListener('click', autoSave);
-                        }
-                    });
-                });
-            });
-            
-            // Set initial page from URL (?page=...) so each section has a unique, shareable link
+            // Editing features disabled (read-only content)
+
+// Set initial page from URL (?page=...) so each section has a unique, shareable link
             const initialRoute = getRouteFromUrl() || 'home';
             if (!getRouteFromUrl()) {
                 setRoute('home', true);
